@@ -11,7 +11,7 @@ public class Sound
 
 public class SoundManager : MonoBehaviour
 {
-    static public SoundManager instance;        // ���� �Ŵ��� �̱���
+    static public SoundManager instance;        
     private void Awake()
     {
         if (instance == null)                
@@ -19,8 +19,6 @@ public class SoundManager : MonoBehaviour
         else                                  
             Destroy(this.gameObject);
     }
-
-
 
     public Sound[] bgmSounds;           // BGM 사운드 저장
     public Sound[] effectSounds;        // SFX 사운드 저장
@@ -36,7 +34,7 @@ public class SoundManager : MonoBehaviour
         PlayBGM("BGM");
     }
 
-    public void PlaySE(string name) // 
+    public void PlaySFX(string name) // 
     {
         for (int i = 0; i < effectSounds.Length; i++)
         {
@@ -44,11 +42,11 @@ public class SoundManager : MonoBehaviour
             {
                 for (int j = 0; j < audioSourceEffectsPlayers.Length; j++)
                 {
-                    if (!audioSourceEffectsPlayers[j].isPlaying)                        // ????????? ???? ????? ?????
+                    if (!audioSourceEffectsPlayers[j].isPlaying) // 현재 사용하려는 오디오소스가 사용중이 아니라면
                     {
-                        audioSourceEffectsPlayers[j].clip = effectSounds[i].clip;       // clip: ????? ???
-                        audioSourceEffectsPlayers[j].Play();                            //????? ???
-                        playSoundName[j] = effectSounds[i].soundName;
+                        audioSourceEffectsPlayers[j].clip = effectSounds[i].clip; // 현재 오디오소스를 사용
+                        audioSourceEffectsPlayers[j].Play(); // 실행
+                        playSoundName[j] = effectSounds[i].soundName; // ??
                         return;
                     }
                 }
@@ -71,15 +69,18 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void StopBGM() {
+
+        audioSourceBgmPlayers.Stop();
+    }
+
     public void StopAllEffectsSound() // 모든 SFX룰 중지
     {
         for (int i = 0; i < audioSourceEffectsPlayers.Length; i++)
-        {
             audioSourceEffectsPlayers[i].Stop();
-        }
     }
 
-    public void StopEffectsSound(string name)       //??? ????? ????
+    public void StopEffectsSound(string name) // 특정 SFX를 중지
     {
         for (int i = 0; i < audioSourceEffectsPlayers.Length; i++)
         {
@@ -89,8 +90,5 @@ public class SoundManager : MonoBehaviour
                 break;
             }
         }
-
-        Debug.Log("??????? " + name + "???? ????");
-
     }
 }
