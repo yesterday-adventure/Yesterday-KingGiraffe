@@ -6,6 +6,9 @@ using BackEnd;
 
 public class BackendManager : MonoBehaviour
 {
+    [SerializeField]
+    private string userName;
+
     void Start()
     {
         var bro = Backend.Initialize(true); // 뒤끝 초기화
@@ -28,7 +31,7 @@ public class BackendManager : MonoBehaviour
     {
         int userNum = 0;
         await Task.Run(() => {
-            BackendLogin.Instance.CustomLogin("user1", userNum.ToString()); // 뒤끝 로그인 함수
+            BackendLogin.Instance.CustomLogin(userName, userNum.ToString()); // 뒤끝 로그인 함수
 
             BackendRank.Instance.RankGet(); // [추가] 랭킹 불러오기 함수
 
