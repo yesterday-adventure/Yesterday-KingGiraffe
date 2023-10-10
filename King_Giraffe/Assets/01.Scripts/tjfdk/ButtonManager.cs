@@ -6,9 +6,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using DG.Tweening;
+using UnityEditor;
 
 public class ButtonManager : MonoBehaviour
 {
+    public static ButtonManager instance;
     [SerializeField] private bool isSetting = false;
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject settingSavePanel;
@@ -20,6 +22,9 @@ public class ButtonManager : MonoBehaviour
     public int rank;
 
     private void Awake() {
+
+        if (instance == null) instance = this;
+        else Destroy(this);
         
         if (gameOverPanel != null) {
 
@@ -32,12 +37,6 @@ public class ButtonManager : MonoBehaviour
 
         if (best != null)
             best.SetActive(false);
-    }
-
-    private void Update() {
-        
-        if (Input.GetKeyDown(KeyCode.R))
-            GameOverPanel();
     }
 
     public void SettingPanel() {
@@ -61,14 +60,17 @@ public class ButtonManager : MonoBehaviour
 
     public void GameOverPanel() {
 
+        GameManager.instance.isStop = true;
+        grade = GameManager.instance.timer;
+
         if (rank == 1) win.SetActive(true);
         else rankTxt.text = rank.ToString();
 
         if (bestGrade < grade)
             best.SetActive(true);
 
-        gradeTxt1.text = "버틴 시간 " + grade.ToString() + "초";
-        gradeTxt2.text = grade.ToString() + "초";
+        gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초";
+        gradeTxt2.text = grade.ToString("N2") + "초";
         nickTxt.text = "#" + "닉네임";
 
         gameOverPanel.SetActive(true);
