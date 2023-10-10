@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LegParent : MonoBehaviour
 {
+    public bool isHead = false;
     public GameObject parent;
-    private int one, two, three, four, five;            // 이걸로 플레이어 머리도 해보기...?
 
     public bool NinetyEuler()       // 최대 90도까지 움직이게
     {
@@ -26,7 +26,7 @@ public class LegParent : MonoBehaviour
 
         if ((parent.transform.localEulerAngles.z <= 90 && parent.transform.eulerAngles.z >= 0)        // 90도 보다 작고 0도보다 크고
             || (parent.transform.localEulerAngles.z <= 360 && parent.transform.localEulerAngles.z >= 270))            // 270보다 크고 360보단 작고
-        {
+            {
             return true;
         }
 

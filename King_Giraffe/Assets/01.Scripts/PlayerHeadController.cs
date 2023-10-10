@@ -30,7 +30,7 @@ public class PlayerHeadController : MonoBehaviour
 
             Debug.Log(parent.transform.eulerAngles.z);
 
-            if (parent.transform.eulerAngles.z > 90 && parent.transform.eulerAngles.z < 270)        // 90보다 크고 270보다 작으면
+            if (parent.transform.localEulerAngles.z > 90 && parent.transform.localEulerAngles.z < 270)        // 90보다 크고 270보다 작으면
             {
                 gameOver = true;
                 GameOver();
@@ -38,20 +38,21 @@ public class PlayerHeadController : MonoBehaviour
         }
     }
 
-    //private void LateUpdate()
-    //{
-    //    if (parent.transform.rotation.x > 0)        // 왼쪽에 가깝냐, 나중에 플레이어가 목을 건드릴 때 호출될 함수로 빼기
-    //    {
-    //        right = false;
-    //    }
-    //    else
-    //    {
-    //        right = true;
-    //    }
-    //}
+   private void LateUpdate()
+    {
+        Debug.Log(parent.transform.localEulerAngles.z);
+        if (parent.transform.localEulerAngles.z > 0 && parent.transform.localEulerAngles.z < 170)        // 왼쪽이니. 혹시 몰라 170까지 범위 설정.
+        {
+            right = false;
+        }
+        else
+        {
+            right = true;
+        }
+    }
 
     private void GameOver()
     {
-        Debug.Log("게임끝!");
+        Debug.Log("게임끝!");      // 여기서 게임매니져 싱글턴?에서 게임오버인거 해주기
     }
 }

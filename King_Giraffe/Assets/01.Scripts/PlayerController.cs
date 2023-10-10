@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
 
     // 움직임 관련
     private bool moving = false;        // 지금 움직이는가.
+    private bool ishead = false;
     private GameObject parent;          // 부모 오브젝트. 움직임 위해서
     private LegParent nowLeg;       // 스크립트 캐싱
+    private Vector2 dir;
 
     // 레이관련
     private Camera main;        // 카메라 캐싱
@@ -52,8 +54,15 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name + "다리 움직임");
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            Vector2 dir = new Vector2(parent.transform.position.x - mousePos.x, parent.transform.position.y - mousePos.y);            // 다리
-            //Vector2 dir = new Vector2(mousePos.x - parent.transform.position.x, mousePos.y - parent.transform.position.y);            // 머리
+            if (!nowLeg.isHead)     // 머리가 아니고 다리면
+            {
+                dir = new Vector2(parent.transform.position.x - mousePos.x, parent.transform.position.y - mousePos.y);            // 다리
+            }
+            else
+            {
+                // 머리이면
+                dir = new Vector2(mousePos.x - parent.transform.position.x, mousePos.y - parent.transform.position.y);            // 머리
+            }
             //if ((dir.normalized.x > 0 && dir.normalized.y < 0) || (dir.normalized.x < 0 && dir.normalized.y < 0)) return;           // 90도 까지만
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
