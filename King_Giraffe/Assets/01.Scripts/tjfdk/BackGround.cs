@@ -7,8 +7,18 @@ using UnityEngine.Video;
 
 public class BackGround : MonoBehaviour
 {
+    public static BackGround instance;
+
     [SerializeField] private GameObject menuBackGround;
     [SerializeField] private GameObject gameBackGround;
+
+    public int turnCount = 0;
+
+    private void Awake() {
+        
+        if (instance == null) instance = this;
+        else Destroy(this);
+    }
 
     private void Update() {
 
@@ -20,8 +30,16 @@ public class BackGround : MonoBehaviour
         }
 
         if (gameBackGround != null) {
-
             
+            // 이동하고 <- 개어려움;;
+            
+            // if 스크롤 해줘야하니?
+            if (gameBackGround.transform.position.x <= -970) {
+
+                gameBackGround.transform.position = new Vector3(970, 540, 0); // 위치 다시 돌리고
+                turnCount++; // 반복 횟수 체크
+                ObstacleManager.instance.ObsCount(); // 장애물 확인
+            }
         }
     }
 }
