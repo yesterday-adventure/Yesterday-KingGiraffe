@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Threading.Tasks;
 
 // 뒤끝 SDK namespace 추가
@@ -7,7 +8,11 @@ using BackEnd;
 public class BackendManager : MonoBehaviour
 {
     [SerializeField]
-    private string userName;
+    private string userName = "";
+    [SerializeField]
+    private InputField userInputName;
+
+    int num;
 
     void Start()
     {
@@ -23,21 +28,26 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
         }
 
-        Test();
+        SignUpAndLogin();
     }
 
-    // 동기 함수를 비동기에서 호출하게 해주는 함수(유니티 UI 접근 불가)
-    async void Test()
+    async void SignUpAndLogin()
     {
-        int userNum = 0;
+        num = Random.Range(0, 9999);
+
+        userName = userInputName.text;
+
         await Task.Run(() => {
-            BackendLogin.Instance.CustomLogin(userName, userNum.ToString()); // 뒤끝 로그인 함수
+            BackendLogin.Instance.CustomSignUp("user" + num.ToString() , "1234"); 
+            BackendLogin.Instance.CustomLogin("user" + num.ToString() , "1234");
 
-            BackendRank.Instance.RankGet(); // [추가] 랭킹 불러오기 함수
+            if (userName != "")
+            {
+                BackendLogin.Instance.UpdateNickname(userName);
+            }
 
-            userNum++;
-            Debug.Log(userNum);
             Debug.Log("테스트를 종료합니다.");
+            BackendRank.Instance.RankGet();
         });
     }
 }

@@ -27,7 +27,7 @@ public class BackendLogin
         Debug.Log("회원가입을 요청합니다.");
 
         var bro = Backend.BMember.CustomSignUp(id, pw);
-
+        Debug.Log("회원가입" + bro);
         if (bro.IsSuccess())
         {
             Debug.Log("회원가입에 성공했습니다. : " + bro);
@@ -43,6 +43,7 @@ public class BackendLogin
         Debug.Log("로그인을 요청합니다.");
 
         var bro = Backend.BMember.CustomLogin(id, pw);
+        Debug.Log("로그인" + bro); 
 
         if (bro.IsSuccess())
         {
@@ -51,6 +52,22 @@ public class BackendLogin
         else
         {
             Debug.LogError("로그인이 실패했습니다. : " + bro);
+        }
+    }
+
+    public void UpdateNickname(string nickname)
+    {
+        Debug.Log("닉네임 변경을 요청합니다.");
+
+        var bro = Backend.BMember.UpdateNickname(nickname);
+
+        if (bro.IsSuccess())
+        {
+            Debug.Log("닉네임 변경에 성공했습니다 : " + bro);
+        }
+        else
+        {
+            Debug.LogError("닉네임 변경에 실패했습니다 : " + bro);
         }
     }
 }
