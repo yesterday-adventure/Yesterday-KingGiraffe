@@ -28,7 +28,7 @@ public class PlayerHeadController : MonoBehaviour
             }
 
 
-            Debug.Log(parent.transform.eulerAngles.z);
+            //Debug.Log(parent.transform.eulerAngles.z);
 
             if (parent.transform.localEulerAngles.z > 90 && parent.transform.localEulerAngles.z < 270)        // 90보다 크고 270보다 작으면
             {
@@ -40,7 +40,7 @@ public class PlayerHeadController : MonoBehaviour
 
    private void LateUpdate()
     {
-        Debug.Log(parent.transform.localEulerAngles.z);
+        //Debug.Log(parent.transform.localEulerAngles.z);
         if (parent.transform.localEulerAngles.z > 0 && parent.transform.localEulerAngles.z < 170)        // 왼쪽이니. 혹시 몰라 170까지 범위 설정.
         {
             right = false;
