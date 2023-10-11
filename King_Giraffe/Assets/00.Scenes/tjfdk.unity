@@ -998,6 +998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391824365}
   - component: {fileID: 391824364}
+  - component: {fileID: 391824369}
   - component: {fileID: 391824368}
   - component: {fileID: 391824366}
   - component: {fileID: 391824367}
@@ -1252,6 +1253,27 @@ MonoBehaviour:
   maxSpeed: 3
   daleySpeed: 0.5
   delay: 3
+--- !u!95 &391824369
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391824363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5823e235b8391f94c89e472e4c5b660e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &396531854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,6 +2478,7 @@ MonoBehaviour:
   tweenDuring: 0.5
   enemySpawnTime: 0
   timerTxt: {fileID: 1567291523}
+  cutSceneList: []
 --- !u!1 &1141212886
 GameObject:
   m_ObjectHideFlags: 0

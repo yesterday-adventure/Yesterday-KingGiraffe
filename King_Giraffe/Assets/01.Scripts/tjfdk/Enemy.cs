@@ -10,10 +10,12 @@ public class Enemy : MonoBehaviour
     float speed;
 
     Rigidbody2D rigid;
+    Animator animator;
 
     private void Awake() {
         
         rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         speed = maxSpeed; // 속도 초기화
     }
 
@@ -21,8 +23,11 @@ public class Enemy : MonoBehaviour
         
         rigid.velocity = Vector3.right * speed; // 사육사 이동
 
-        if (GameManager.instance.isStop == true) // 게임이 끝났다면
+        if (GameManager.instance.isStop == true) { // 게임이 끝났다면
+
             rigid.velocity = Vector3.zero; // 사육사 정지
+            animator.SetBool("Stop", true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) { 
