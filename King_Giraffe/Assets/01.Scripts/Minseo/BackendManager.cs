@@ -9,8 +9,8 @@ public class BackendManager : MonoBehaviour
 {
     [SerializeField]
     private string userName = "";
-    [SerializeField]
-    private InputField userInputName;
+    //[SerializeField]
+    //private InputField userInputName;
 
     int num;
 
@@ -35,7 +35,7 @@ public class BackendManager : MonoBehaviour
     {
         num = Random.Range(0, 9999);
 
-        userName = userInputName.text;
+        //userName = userInputName.text;  
 
         await Task.Run(() => {
             BackendLogin.Instance.CustomSignUp("user" + num.ToString() , "1234"); 
