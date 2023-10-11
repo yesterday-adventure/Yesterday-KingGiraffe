@@ -4,21 +4,23 @@ using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public class ObstaclePos {
+
+    public GameObject pos;
+    public bool use;
+}
+
 public class ObstacleManager : MonoBehaviour
 {
     public static ObstacleManager instance;
 
+    [Header("Enemy")]
+    [SerializeField] private GameObject enemy; // 사육사
+    
+    [Header("Obstacle")]
     [SerializeField] int curObsCount = 0; // 현재 장애물 개수
-    [SerializeField] int addObsCount = 0; // 추가될 장애물 개수
-    [SerializeField] GameObject obstacle;
-
-    class ObstaclePos {
-
-        public GameObject pos;
-        public bool use;
-    }
-
-    [SerializeField] List<ObstaclePos> obsPosList;
+    [SerializeField] List<GameObject> obsstacleList; // 장애물 리스트
+    [SerializeField] List<ObstaclePos> obsPosList; // 장애물 생성 위치 리스트
 
     private void Awake() {
         
@@ -26,13 +28,19 @@ public class ObstacleManager : MonoBehaviour
         else Destroy(this);
     }
 
-    public void ObsCount() {
+    private void EnemySpawn() { // 사육사를 생성
+
+        // 사육사 소환!
+        enemy.SetActive(true);
+    }
+
+    public void ObsCount() { // 장애물 개수 증가
         
         if (BackGround.instance.turnCount % 5 == 0)
             curObsCount++;
     }
 
-    public void SpawnObs() {
+    public void SpawnObs() { // 장애물 생성
 
         for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
 
@@ -41,7 +49,7 @@ public class ObstacleManager : MonoBehaviour
             if (obsPosList[ran].use == true)        
                 i--;
 
-            Instantiate(obstacle, obsPosList[ran].pos.transform.position, Quaternion.identity);
+            Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].pos.transform.position, Quaternion.identity);
             obsPosList[ran].use = true;
         }
     }
