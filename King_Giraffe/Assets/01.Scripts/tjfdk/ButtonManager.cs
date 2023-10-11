@@ -32,11 +32,8 @@ public class ButtonManager : MonoBehaviour
             gameOverPanel.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
 
-        if (win != null)
-            win.SetActive(false);
-
-        if (best != null)
-            best.SetActive(false);
+        win?.SetActive(false);
+        best?.SetActive(false);
     }
 
     public void SettingPanel() {
@@ -61,7 +58,9 @@ public class ButtonManager : MonoBehaviour
     public void GameOverPanel() {
 
         GameManager.instance.isStop = true;
-        grade = GameManager.instance.timer;
+
+        grade = GameManager.instance.score;
+        // bestGrade 불러오기?,,
 
         if (rank == 1) win.SetActive(true);
         else rankTxt.text = rank.ToString();
