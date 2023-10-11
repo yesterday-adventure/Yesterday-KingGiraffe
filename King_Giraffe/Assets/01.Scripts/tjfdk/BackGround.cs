@@ -22,24 +22,28 @@ public class BackGround : MonoBehaviour
 
     private void Update() {
 
-        if (menuBackGround != null) {
+        if (GameManager.instance.isStop == false) {
 
-            menuBackGround.transform.position += Vector3.left * 100f * Time.deltaTime;
-            if (menuBackGround.transform.position.x <= -970)
-                menuBackGround.transform.position = new Vector3(970, 540, 0);
-        }
+            if (menuBackGround != null) {
 
-        if (gameBackGround != null) {
-            
-            // 이동하고 <- 개어려움;;
-            
-            // if 스크롤 해줘야하니?
-            if (gameBackGround.transform.position.x <= -970) {
+                menuBackGround.transform.position += Vector3.left * 100f * Time.deltaTime;
+                if (menuBackGround.transform.position.x <= -970)
+                    menuBackGround.transform.position = new Vector3(970, 540, 0);
+            }
 
-                gameBackGround.transform.position = new Vector3(970, 540, 0); // 위치 다시 돌리고
-                turnCount++; // 반복 횟수 체크
-                ObstacleManager.instance.ObsCount(); // 장애물 확인
+            if (gameBackGround != null) {
+                
+                // 이동하고 <- 개어려움;;
+                
+                // if 스크롤 해줘야하니?
+                if (gameBackGround.transform.position.x <= -970) {
+
+                    gameBackGround.transform.position = new Vector3(970, 540, 0); // 위치 다시 돌리고
+                    turnCount++; // 반복 횟수 체크
+                    ObstacleManager.instance.ObsCount(); // 장애물 확인
+                }
             }
         }
+
     }
 }
