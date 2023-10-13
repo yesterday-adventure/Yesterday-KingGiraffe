@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
         mainCam = Camera.main;
     }
 
-    void Update()
+    private void LateUpdate()
     {
         // this는 카메라를 의미 (z값은 카메라값을 그대로 유지)
         //targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
