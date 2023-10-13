@@ -10,38 +10,43 @@ public class Enemy : MonoBehaviour
     float speed;
 
     Rigidbody2D rigid;
+    Animator animator;
 
     private void Awake() {
         
         rigid = GetComponent<Rigidbody2D>();
-        speed = maxSpeed;
+        animator = GetComponent<Animator>();
+        speed = maxSpeed; // 속도 초기화
     }
 
     private void Update() {
         
-        rigid.velocity = Vector3.right * speed;
+        // rigid.velocity = Vector3.right * speed; // 사육사 이동
 
-        if (GameManager.instance.isStop == true)
-            rigid.velocity = Vector3.zero;
-    }
+        if (GameManager.instance.isStop == true) { // 게임이 끝났다면
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        
-        if (other.transform.CompareTag("Player")) {
-
-            ButtonManager.instance.GameOverPanel();
-        } 
-        else if (other.transform.CompareTag("Obs")) {
-
-            StartCoroutine(Ispeed());
-            Destroy(other.gameObject);
+            rigid.velocity = Vector3.zero; // 사육사 정지
+            animator.SetBool("Stop", true);
         }
     }
 
-    IEnumerator Ispeed() {
+    private void OnCollisionEnter2D(Collision2D other) { 
+        
+        if (other.transform.CompareTag("Player")) { // 플레이어와 충돌했다면
 
-        speed = daleySpeed;
-        yield return new WaitForSeconds(delay);
-        speed = maxSpeed;
+            ButtonManager.instance.GameOverPanel(); // 게임오버
+        } 
+        else if (other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면
+
+            StartCoroutine(Ispeed()); // 스턴
+            Destroy(other.gameObject); // 장애물 삭제
+        }
+    }
+
+    IEnumerator Ispeed() { // 스턴
+
+        speed = daleySpeed; // 속도를 낮추고
+        yield return new WaitForSeconds(delay); // n초 지났다면
+        speed = maxSpeed; // 속도 정상화
     }
 }

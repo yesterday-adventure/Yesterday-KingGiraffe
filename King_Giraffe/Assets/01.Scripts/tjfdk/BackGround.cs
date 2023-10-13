@@ -17,12 +17,14 @@ public class BackGround : MonoBehaviour
     private void Awake() {
         
         if (instance == null) instance = this;
-        else Destroy(this);
+        else Destroy(this.gameObject);
     }
 
     private void Update() {
 
-        if (GameManager.instance.isStop == false) {
+        SoundManager.instance.PlaySFX("t");
+
+        // if (GameManager.instance.isStop == false) {
 
             if (menuBackGround != null) {
 
@@ -43,7 +45,7 @@ public class BackGround : MonoBehaviour
                     ObstacleManager.instance.ObsCount(); // 장애물 확인
                 }
             }
-        }
+        // }
 
     }
 }

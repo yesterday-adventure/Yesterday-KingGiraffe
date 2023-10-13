@@ -11,10 +11,13 @@ using UnityEditor;
 public class ButtonManager : MonoBehaviour
 {
     public static ButtonManager instance;
+
+    [Header("Setting")]
     [SerializeField] private bool isSetting = false;
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject settingSavePanel;
 
+    [Header("GameOver")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI gradeTxt1, gradeTxt2, rankTxt, nickTxt;
     [SerializeField] private GameObject win, best;
@@ -24,16 +27,16 @@ public class ButtonManager : MonoBehaviour
     private void Awake() {
 
         if (instance == null) instance = this;
-        else Destroy(this);
+        else Destroy(this.gameObject);
         
         if (gameOverPanel != null) {
 
-            gameOverPanel.SetActive(false);
-            gameOverPanel.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            gameOverPanel.SetActive(false); // 판넬 활성화 초기화
+            gameOverPanel.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // 판넬 사이즈 초기화
         }
 
-        win?.SetActive(false);
-        best?.SetActive(false);
+        win?.SetActive(false); // 이미지 활성화 초기화
+        best?.SetActive(false); // 이미지 활성화 초기화
     }
 
     public void SettingPanel() {
@@ -57,23 +60,22 @@ public class ButtonManager : MonoBehaviour
 
     public void GameOverPanel() {
 
-        GameManager.instance.isStop = true;
+        GameManager.instance.isStop = true; // 게임 정지
+        grade = GameManager.instance.score; // 현재 점수 받아오기
+        // bestGrade 불러오기?,, 이건...
 
-        grade = GameManager.instance.score;
-        // bestGrade 불러오기?,,
+        if (rank == 1) win.SetActive(true); // 1등이라면 1등 이미지를 활성화하고 
+        else rankTxt.text = rank.ToString(); // 아니라면 등수를 표시한다.
 
-        if (rank == 1) win.SetActive(true);
-        else rankTxt.text = rank.ToString();
+        if (bestGrade < grade) // 현재 점수가 최고 점수보다 높다면
+            best.SetActive(true); // 최고점 이미지를 활성화
 
-        if (bestGrade < grade)
-            best.SetActive(true);
+        gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초"; // 현재 점수 표시
+        gradeTxt2.text = grade.ToString("N2") + "초"; // 현재 점수 표시
+        nickTxt.text = "#" + "닉네임"; // 플레이어 닉네임 표시
 
-        gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초";
-        gradeTxt2.text = grade.ToString("N2") + "초";
-        nickTxt.text = "#" + "닉네임";
-
-        gameOverPanel.SetActive(true);
-        gameOverPanel.transform.DOScale(1f, 0.5f).SetEase(Ease.OutExpo);
+        gameOverPanel.SetActive(true); // 판넬 활성화
+        gameOverPanel.transform.DOScale(1f, 0.5f).SetEase(Ease.OutExpo); // 판넬 활성화 효과
     }
 
     public void GameScene() {
