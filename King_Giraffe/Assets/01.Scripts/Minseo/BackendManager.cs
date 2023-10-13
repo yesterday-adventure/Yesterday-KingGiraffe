@@ -1,16 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
-
-// 뒤끝 SDK namespace 추가
 using BackEnd;
 
 public class BackendManager : MonoBehaviour
 {
     [SerializeField]
-    private string userName = "";
-    //[SerializeField]
-    //private InputField userInputName;
+        private string userName = "";
+        //[SerializeField]
+        //private InputField userInputName;
 
     int num;
 
@@ -38,6 +36,7 @@ public class BackendManager : MonoBehaviour
         //userName = userInputName.text;  
 
         await Task.Run(() => {
+            #region 회원가입 로그인
             BackendLogin.Instance.CustomSignUp("user" + num.ToString() , "1234"); 
             BackendLogin.Instance.CustomLogin("user" + num.ToString() , "1234");
 
@@ -45,9 +44,25 @@ public class BackendManager : MonoBehaviour
             {
                 BackendLogin.Instance.UpdateNickname(userName);
             }
+            #endregion
+
+            #region 데이터
+            BackendGameData.Instance.GameDataGet(); 
+
+            if (BackendGameData.userData == null)
+            {
+                BackendGameData.Instance.GameDataInsert();
+            }
+
+            BackendGameData.Instance.SocreUp();
+
+            BackendGameData.Instance.GameDataUpdate();
+            #endregion
+
+            BackendRank.Instance.RankInsert(3);
+            BackendRank.Instance.RankGet();
 
             Debug.Log("테스트를 종료합니다.");
-            BackendRank.Instance.RankGet();
         });
     }
 }

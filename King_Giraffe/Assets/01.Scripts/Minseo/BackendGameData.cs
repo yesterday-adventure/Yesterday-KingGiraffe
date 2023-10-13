@@ -9,7 +9,7 @@ public class UserData
 {
     public int score = 0;
 
-    // 데이터를 디버깅하기 위한 함수입니다.(Debug.Log(UserData);)
+    // 디버깅 
     public override string ToString()
     {
         StringBuilder result = new StringBuilder();
@@ -21,7 +21,6 @@ public class UserData
 
 public class BackendGameData
 {
-
     private static BackendGameData _instance = null;
 
     public static BackendGameData Instance
@@ -39,7 +38,7 @@ public class BackendGameData
 
     public static UserData userData;
 
-    private string gameDataRowInDate = string.Empty;
+    private string gameDataRowInDate = string.Empty;    
 
     public void GameDataInsert()
     {
@@ -80,7 +79,6 @@ public class BackendGameData
         {
             Debug.Log("게임 정보 조회에 성공했습니다. : " + bro);
 
-
             LitJson.JsonData gameDataJson = bro.FlattenRows(); // Json으로 리턴된 데이터를 받아옵니다.  
 
             // 받아온 데이터의 갯수가 0이라면 데이터가 존재하지 않는 것입니다.  
@@ -96,7 +94,7 @@ public class BackendGameData
 
                 userData.score = int.Parse(gameDataJson[0]["score"].ToString());
 
-                Debug.Log(userData.ToString());
+                Debug.Log(userData.score.ToString());
             }
         }
         else
@@ -105,10 +103,9 @@ public class BackendGameData
         }
     }
 
-    public void Score()
+    public void SocreUp()
     {
-        Debug.Log("score 증가시킵니다.");
-        // 나중에 여기에 스코어 증가 만들던지 아니면 다른곳에 만들던지
+        Debug.Log("score Up");
     }
 
     // 게임정보 수정하기
@@ -121,7 +118,7 @@ public class BackendGameData
         }
 
         Param param = new Param();
-        param.Add("level", userData.score);
+        param.Add("Score", userData.score);
 
         BackendReturnObject bro = null;
 

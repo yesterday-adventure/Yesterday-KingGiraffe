@@ -7,7 +7,6 @@ using BackEnd;
 
 public class BackendRank
 {
-
     private static BackendRank _instance = null;
 
     public static BackendRank Instance
@@ -25,7 +24,7 @@ public class BackendRank
 
     public void RankInsert(int score)
     {  
-        string rankUUID = "a117e370-6368-11ee-b3ed-0983ba300dcf";
+        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
 
         string tableName = "KingGireaffe";
         string rowInDate = string.Empty;
@@ -66,7 +65,7 @@ public class BackendRank
         Debug.Log("내 게임 정보의 rowInDate : " + rowInDate); // 추출된 rowIndate의 값은 다음과 같습니다.  
 
         Param param = new Param();
-        param.Add("socre", score);
+        param.Add("score", score);
 
         // 추출된 rowIndate를 가진 데이터에 param값으로 수정을 진행하고 랭킹에 데이터를 업데이트합니다.  
         Debug.Log("랭킹 삽입을 시도합니다.");
@@ -74,7 +73,7 @@ public class BackendRank
 
         if (rankBro.IsSuccess() == false)
         {
-            Debug.LogError("랭킹 등록 중 오류가 발생했습니다. : " + rankBro);
+            Debug.LogError("랭킹 등록 중 오류가 발생했습니다. : " + rankBro); 
             return;
         }
 
@@ -83,7 +82,7 @@ public class BackendRank
 
     public void RankGet()
     {
-        string rankUUID = "a117e370-6368-11ee-b3ed-0983ba300dcf"; // 예시 : "4088f640-693e-11ed-ad29-ad8f0c3d4c70"
+        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
         var bro = Backend.URank.User.GetRankList(rankUUID);
 
         if (bro.IsSuccess() == false)
@@ -106,6 +105,7 @@ public class BackendRank
             info.AppendLine("정렬번호 : " + jsonData["index"].ToString());
             info.AppendLine();
             Debug.Log(info);
+            //Debug.Log(info.AppendLine("닉네임 : " + jsonData["nickname"].ToString()));
         }
     }
 }
