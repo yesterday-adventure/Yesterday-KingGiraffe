@@ -27,7 +27,7 @@ public class ButtonManager : MonoBehaviour
     private void Awake() {
 
         if (instance == null) instance = this;
-        else Destroy(this);
+        else Destroy(this.gameObject);
         
         if (gameOverPanel != null) {
 

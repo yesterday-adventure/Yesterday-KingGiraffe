@@ -8,7 +8,8 @@ using UnityEditor.SearchService;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    // public static UIManager instance;
+    static public UIManager instance;        
 
     [Header("BeginAnim")]
     [SerializeField] private GameObject warning;
@@ -21,10 +22,17 @@ public class UIManager : MonoBehaviour
     [Header("CutScene")]
     [SerializeField] private List<Image> cutSceneList;
 
+    // private void Awake()
+    // {
+    //     if (instance == null)                
+    //         instance = this;               
+    //     else                                  
+    //         Destroy(this.gameObject);
+    // }
     private void Awake() {
         
         if (instance == null) instance = this;
-        else Destroy(this);
+        else Destroy(this.gameObject);
     }
 
     private void Start() {

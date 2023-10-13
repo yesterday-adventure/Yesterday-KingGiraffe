@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     private void Update() {
         
-        rigid.velocity = Vector3.right * speed; // 사육사 이동
+        // rigid.velocity = Vector3.right * speed; // 사육사 이동
 
         if (GameManager.instance.isStop == true) { // 게임이 끝났다면
 

@@ -9,10 +9,15 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isStop = false;
     public float score = 0;
-
     
     private void Awake() {
 
+        if (instance == null) instance = this;
+        else Destroy(this.gameObject);
+    }
+
+    private void Start() {
+        
         PlayerPrefs.SetInt("Tutorial", PlayerPrefs.GetInt("Tutorial", 0));
 
         if (PlayerPrefs.GetInt("Tutorial") == 0) {
@@ -23,7 +28,5 @@ public class GameManager : MonoBehaviour
         else
             ButtonManager.instance.MenuScene();
         
-        if (instance == null) instance = this;
-        else Destroy(this);
     }
 }
