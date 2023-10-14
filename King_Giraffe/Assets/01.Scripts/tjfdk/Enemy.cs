@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         
         if (other.transform.CompareTag("leg")) { // 플레이어와 충돌했다면
 
+            Debug.Log("leg");
             ButtonManager_Game.instance.GameOverPanel(); // 게임오버
         } 
         else if (other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면

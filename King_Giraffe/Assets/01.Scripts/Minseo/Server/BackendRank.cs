@@ -11,8 +11,6 @@ public class BackendRank
 {
     private static BackendRank _instance = null;
 
-    public int i_rank;
-
     [SerializeField] private TextMeshProUGUI _1st;
     [SerializeField] private TextMeshProUGUI _2st;
     [SerializeField] private TextMeshProUGUI _3st;
@@ -118,6 +116,29 @@ public class BackendRank
 
     //}
 
+    public void GetPlayerData(string _nick, int _rank) {
+
+        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
+        var bro = Backend.URank.User.GetRankList(rankUUID);
+
+        LitJson.JsonData jsonData = bro.FlattenRows();
+
+        StringBuilder info = new StringBuilder();
+        StringBuilder info_s = new StringBuilder();
+
+        StringBuilder info_my = new StringBuilder();
+        StringBuilder info_mys = new StringBuilder();
+
+        info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+        info_mys.AppendLine($"{jsonData["score"].ToString()} ��");
+
+        info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+        info_s.AppendLine($"{jsonData["score"].ToString()} ��");
+
+        _nick = jsonData["nickname"].ToString();
+        _rank = (int)jsonData["rank"];
+    }
+
     public void RankGet(TextMeshProUGUI _1st, TextMeshProUGUI _2st, TextMeshProUGUI _3st, TextMeshProUGUI _1stS, TextMeshProUGUI _2stS, TextMeshProUGUI _3stS, TextMeshProUGUI _MyR, TextMeshProUGUI _MyRS)
     {
 
@@ -148,8 +169,6 @@ public class BackendRank
 
                 info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
                 info_s.AppendLine($"{jsonData["score"].ToString()} ��");
-
-                i_rank = (int)jsonData["rank"];
 
                 if (i == 0)
                 {

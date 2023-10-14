@@ -7,9 +7,12 @@ using TMPro;
 
 public class BackendManager : MonoBehaviour
 {
-    [SerializeField] public string userName = "";
-    [SerializeField] private TMP_InputField inputField;
+    private static BackendManager _instance = null;
 
+    [SerializeField] private string userName = "";
+    [SerializeField] private TMP_InputField inputField;
+        
+    [SerializeField] private GameObject nickInputPanel;
     [SerializeField] private TextMeshProUGUI _1st;
     [SerializeField] private TextMeshProUGUI _1stScore;
     [SerializeField] private TextMeshProUGUI _2st;
@@ -21,6 +24,19 @@ public class BackendManager : MonoBehaviour
     
     int num;
 
+    public static BackendManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new BackendManager();
+            }
+
+            return _instance;
+        }
+    }
+
     private void Awake()
     {
         userName = inputField.GetComponent<TMP_InputField>().text;
@@ -28,16 +44,18 @@ public class BackendManager : MonoBehaviour
 
     void Start()
     {
-        var bro = Backend.Initialize(true); // �ڳ� �ʱ�ȭ
+        inputField.onSubmit.AddListener((inputField) => {NickName();});
 
-        // �ڳ� �ʱ�ȭ�� ���� ���䰪
+        var bro = Backend.Initialize(true); // ??? ????
+
+        // ??? ?????? ???? ????
         if (bro.IsSuccess())
         {
-            Debug.Log("�ʱ�ȭ ���� : " + bro); // ������ ��� statusCode 204 Success
+            Debug.Log("???? ???? : " + bro); // ?????? ??? statusCode 204 Success
         }
         else
         {
-            Debug.LogError("�ʱ�ȭ ���� : " + bro); // ������ ��� statusCode 400�� ���� �߻�
+            Debug.LogError("???? ???? : " + bro); // ?????? ??? statusCode 400?? ???? ???
         }
 
         StartCoroutine(SignUpAndLoginCoroutine());
@@ -49,12 +67,12 @@ public class BackendManager : MonoBehaviour
 
         //userName = userInputName.text;  
 
-        #region ȸ������ �α���
+        #region ??????? ?��???
         BackendLogin.Instance.CustomSignUp("user" + num.ToString(), "1234");
         BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
         #endregion
 
-        #region ������
+        #region ??????
         BackendGameData.Instance.GameDataGet();
 
         if (BackendGameData.userData == null)
@@ -75,7 +93,7 @@ public class BackendManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("�׽�Ʈ�� �����մϴ�.");
+        Debug.Log("?????? ????????.");
     }
 
     public void NickName()
@@ -86,5 +104,8 @@ public class BackendManager : MonoBehaviour
         {
             BackendLogin.Instance.UpdateNickname(userName);
         }
+
+        Debug.Log(userName);
+        nickInputPanel.SetActive(false);
     }
 }

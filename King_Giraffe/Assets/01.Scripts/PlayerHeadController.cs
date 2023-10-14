@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerHeadController : MonoBehaviour
 {
-    // 1. ³» ¸Ó¸®ÀÇ ·ÎÅ×ÀÌ¼ÇÀ» °¡Á®¿Í¼­ 90, -90À¸·Î °è¼ÓÇØ¼­ ÀÌµ¿.
-    // 1- 2. ¿À´õÀÎ·¹ÀÌ¾î º¯°æÀ¸·Î µðÅ×ÀÏÇÏ°Ô
-    // 2. ¸ñÀÌ ²©ÀÌ¸é °ÔÀÓ Á¾·á
+    // 1. ï¿½ï¿½ ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ 90, -90ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ìµï¿½.
+    // 1- 2. ï¿½ï¿½ï¿½ï¿½ï¿½Î·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
+    // 2. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField] private GameObject parent;
     [SerializeField] [Range(1f, 30f)] private float speed = 15;
-    [SerializeField]private bool right = true;      // true -90µµ ÂÊÀ¸·Î ÀÌµ¿, ¿À¸¥ÂÊÀÓ.
+    [SerializeField]private bool right = true;      // true -90ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     private bool gameOver = false;
 
     private void Update()
     {
         if (!gameOver)
         {
-            if (right)      // ¸ñÀÌ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿.
+            if (right)      // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½.
             {
                 //parent.transform.rotation = new Vector3(0, 0, 0);
                 parent.transform.Rotate(0, 0, -(Time.deltaTime * speed));
@@ -30,7 +30,7 @@ public class PlayerHeadController : MonoBehaviour
 
             Debug.Log(parent.transform.eulerAngles.z);
 
-            if (parent.transform.localEulerAngles.z > 90 && parent.transform.localEulerAngles.z < 270)        // 90º¸´Ù Å©°í 270º¸´Ù ÀÛÀ¸¸é
+            if (parent.transform.localEulerAngles.z > 90 && parent.transform.localEulerAngles.z < 270)        // 90ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ 270ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 gameOver = true;
                 GameOver();
@@ -41,7 +41,7 @@ public class PlayerHeadController : MonoBehaviour
    private void LateUpdate()
     {
         Debug.Log(parent.transform.localEulerAngles.z);
-        if (parent.transform.localEulerAngles.z > 0 && parent.transform.localEulerAngles.z < 170)        // ¿ÞÂÊÀÌ´Ï. È¤½Ã ¸ô¶ó 170±îÁö ¹üÀ§ ¼³Á¤.
+        if (parent.transform.localEulerAngles.z > 0 && parent.transform.localEulerAngles.z < 170)        // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½. È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 170ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         {
             right = false;
         }
@@ -53,6 +53,6 @@ public class PlayerHeadController : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("°ÔÀÓ³¡!");      // ¿©±â¼­ °ÔÀÓ¸Å´ÏÁ® ½Ì±ÛÅÏ?¿¡¼­ °ÔÀÓ¿À¹öÀÎ°Å ÇØÁÖ±â
+        Debug.Log("ï¿½ï¿½ï¿½Ó³ï¿½!");      // ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ ï¿½Ì±ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
     }
 }
