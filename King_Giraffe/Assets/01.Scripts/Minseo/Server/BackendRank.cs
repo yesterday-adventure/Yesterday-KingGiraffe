@@ -116,7 +116,7 @@ public class BackendRank
 
     //}
 
-    public void RankGet(TextMeshProUGUI _1st, TextMeshProUGUI _2st, TextMeshProUGUI _3st)
+    public void RankGet(TextMeshProUGUI _1st, TextMeshProUGUI _2st, TextMeshProUGUI _3st, TextMeshProUGUI _1stS, TextMeshProUGUI _2stS, TextMeshProUGUI _3stS, TextMeshProUGUI _MyR, TextMeshProUGUI _MyRS)
     {
 
         string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
@@ -136,22 +136,35 @@ public class BackendRank
                 LitJson.JsonData jsonData = bro.FlattenRows()[i];
 
                 StringBuilder info = new StringBuilder();
-                info.AppendLine("순위 : " + jsonData["rank"].ToString());
-                info.AppendLine("닉네임 : " + jsonData["nickname"].ToString());
-                info.AppendLine("점수 : " + jsonData["score"].ToString());
+                StringBuilder info_s = new StringBuilder();
+
+                StringBuilder info_my = new StringBuilder();
+                StringBuilder info_mys = new StringBuilder();
+
+                info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+                info_mys.AppendLine($"{jsonData["score"].ToString()} 초");
+
+                info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+                info_s.AppendLine($"{jsonData["score"].ToString()} 초");
 
                 if (i == 0)
                 {
                     _1st.text = info.ToString();
+                    _1stS.text = info_s.ToString();
                 }
                 else if (i == 1)
                 {
                     _2st.text = info.ToString();
+                    _2stS.text = info_s.ToString();
                 }
                 else if (i == 2)
                 {
                     _3st.text = info.ToString();
+                    _3stS.text = info_s.ToString();
                 }
+
+                _MyR.text = info_my.ToString();
+                _MyRS.text = info_mys.ToString();
             }
         }
         else
