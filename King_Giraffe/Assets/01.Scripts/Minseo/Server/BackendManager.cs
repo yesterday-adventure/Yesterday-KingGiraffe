@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Threading.Tasks;
 using BackEnd;
 using TMPro;
@@ -10,9 +11,13 @@ public class BackendManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
 
     [SerializeField] private TextMeshProUGUI _1st;
+    [SerializeField] private TextMeshProUGUI _1stScore;
     [SerializeField] private TextMeshProUGUI _2st;
+    [SerializeField] private TextMeshProUGUI _2stSocre;
     [SerializeField] private TextMeshProUGUI _3st;
+    [SerializeField] private TextMeshProUGUI _3stScore;
     [SerializeField] private TextMeshProUGUI _myRanking;
+    [SerializeField] private TextMeshProUGUI _myRankingSocre;
 
     int num;
 
@@ -35,43 +40,42 @@ public class BackendManager : MonoBehaviour
             Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
         }
 
-        SignUpAndLogin();
+        StartCoroutine(SignUpAndLoginCoroutine());
     }
 
-    async void SignUpAndLogin()
+    private IEnumerator SignUpAndLoginCoroutine()
     {
         num = Random.Range(0, 9999);
 
         //userName = userInputName.text;  
 
-        await Task.Run(() => {
-            #region 회원가입 로그인
-            BackendLogin.Instance.CustomSignUp("user" + num.ToString() , "1234"); 
-            BackendLogin.Instance.CustomLogin("user" + num.ToString() , "1234");
-            #endregion
+        #region 회원가입 로그인
+        BackendLogin.Instance.CustomSignUp("user" + num.ToString(), "1234");
+        BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
+        #endregion
 
-            #region 데이터
-            BackendGameData.Instance.GameDataGet(); 
+        #region 데이터
+        BackendGameData.Instance.GameDataGet();
 
-            if (BackendGameData.userData == null)
-            {
-                BackendGameData.Instance.GameDataInsert();
-            }
+        if (BackendGameData.userData == null)
+        {
+            BackendGameData.Instance.GameDataInsert();
+        }
 
-            BackendGameData.Instance.SocreUp();
+        BackendGameData.Instance.SocreUp();
 
-            BackendGameData.Instance.GameDataUpdate();
-            #endregion
+        BackendGameData.Instance.GameDataUpdate();
+        #endregion
 
-            BackendRank.Instance.RankInsert((float)5.4);
-            //BackendRank.Instance.RankInsert((float)GameManager.instance.score);
+        BackendRank.Instance.RankInsert((float)1.4);
+        //BackendRank.Instance.RankInsert((float)GameManager.instance.score);
 
-            BackendRank.Instance.RankGet(_1st, _2st, _3st);
-            //BackendRank.Instance.RankGet();
+        BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
+        //BackendRank.Instance.RankGet();
 
+        yield return new WaitForSeconds(2f);
 
-            Debug.Log("테스트를 종료합니다.");
-        });
+        Debug.Log("테스트를 종료합니다.");
     }
 
     public void NickName()
