@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     private void Update() {
         
-        // rigid.velocity = Vector3.right * speed; // 사육사 이동
+        rigid.velocity = Vector3.right * speed; // 사육사 이동
 
         if (GameManager.instance.isStop == true) { // 게임이 끝났다면
 
@@ -32,9 +32,9 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) { 
         
-        if (other.transform.CompareTag("Player")) { // 플레이어와 충돌했다면
+        if (other.transform.CompareTag("leg")) { // 플레이어와 충돌했다면
 
-            ButtonManager.instance.GameOverPanel(); // 게임오버
+            ButtonManager_Game.instance.GameOverPanel(); // 게임오버
         } 
         else if (other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면
 

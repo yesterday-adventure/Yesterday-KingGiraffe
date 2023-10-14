@@ -7,7 +7,7 @@ using TMPro;
 
 public class BackendManager : MonoBehaviour
 {
-    [SerializeField] private string userName = "";
+    [SerializeField] public string userName = "";
     [SerializeField] private TMP_InputField inputField;
 
     [SerializeField] private TextMeshProUGUI _1st;
@@ -18,7 +18,7 @@ public class BackendManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _3stScore;
     [SerializeField] private TextMeshProUGUI _myRanking;
     [SerializeField] private TextMeshProUGUI _myRankingSocre;
-
+    
     int num;
 
     private void Awake()
@@ -28,16 +28,16 @@ public class BackendManager : MonoBehaviour
 
     void Start()
     {
-        var bro = Backend.Initialize(true); // µÚ³¡ ÃÊ±âÈ­
+        var bro = Backend.Initialize(true); // ï¿½Ú³ï¿½ ï¿½Ê±ï¿½È­
 
-        // µÚ³¡ ÃÊ±âÈ­¿¡ ´ëÇÑ ÀÀ´ä°ª
+        // ï¿½Ú³ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä°ª
         if (bro.IsSuccess())
         {
-            Debug.Log("ÃÊ±âÈ­ ¼º°ø : " + bro); // ¼º°øÀÏ °æ¿ì statusCode 204 Success
+            Debug.Log("ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ : " + bro); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ statusCode 204 Success
         }
         else
         {
-            Debug.LogError("ÃÊ±âÈ­ ½ÇÆÐ : " + bro); // ½ÇÆÐÀÏ °æ¿ì statusCode 400´ë ¿¡·¯ ¹ß»ý
+            Debug.LogError("ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ : " + bro); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ statusCode 400ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
         }
 
         StartCoroutine(SignUpAndLoginCoroutine());
@@ -49,12 +49,12 @@ public class BackendManager : MonoBehaviour
 
         //userName = userInputName.text;  
 
-        #region È¸¿ø°¡ÀÔ ·Î±×ÀÎ
+        #region È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½
         BackendLogin.Instance.CustomSignUp("user" + num.ToString(), "1234");
         BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
         #endregion
 
-        #region µ¥ÀÌÅÍ
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         BackendGameData.Instance.GameDataGet();
 
         if (BackendGameData.userData == null)
@@ -75,7 +75,7 @@ public class BackendManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("Å×½ºÆ®¸¦ Á¾·áÇÕ´Ï´Ù.");
+        Debug.Log("ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
     }
 
     public void NickName()
