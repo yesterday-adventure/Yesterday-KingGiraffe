@@ -20,6 +20,8 @@ public class CameraManager : MonoBehaviour
         //targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
         targetPosition = new Vector3(target.transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
 
+        //Debug.Log(targetPosition);
+
         // vectorA -> B까지 T의 속도로 이동
         mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
