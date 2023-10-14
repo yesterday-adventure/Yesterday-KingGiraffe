@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using TMPro;
 
-// µÚ³¡ SDK namespace Ãß°¡
+// ï¿½Ú³ï¿½ SDK namespace ï¿½ß°ï¿½
 using BackEnd;
 
 public class BackendRank
@@ -37,18 +37,18 @@ public class BackendRank
         string tableName = "KingGireaffe";
         string rowInDate = string.Empty;
 
-        // ·©Å·À» »ðÀÔÇÏ±â À§ÇØ¼­´Â °ÔÀÓ µ¥ÀÌÅÍ¿¡¼­ »ç¿ëÇÏ´Â µ¥ÀÌÅÍÀÇ inDate°ªÀÌ ÇÊ¿äÇÕ´Ï´Ù.  
-        // µû¶ó¼­ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Â ÈÄ, ÇØ´ç µ¥ÀÌÅÍÀÇ inDate°ªÀ» ÃßÃâÇÏ´Â ÀÛ¾÷À» ÇØ¾ßÇÕ´Ï´Ù.  
-        Debug.Log("µ¥ÀÌÅÍ Á¶È¸¸¦ ½ÃµµÇÕ´Ï´Ù.");
+        // ï¿½ï¿½Å·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inDateï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Õ´Ï´ï¿½.  
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inDateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Õ´Ï´ï¿½.  
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ãµï¿½ï¿½Õ´Ï´ï¿½.");
         var bro = Backend.GameData.GetMyData(tableName, new Where());
 
         if (bro.IsSuccess() == false)
         {
-            Debug.LogError("µ¥ÀÌÅÍ Á¶È¸ Áß ¹®Á¦°¡ ¹ß»ýÇß½À´Ï´Ù : " + bro);
+            Debug.LogError("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro);
             return;
         }
 
-        Debug.Log("µ¥ÀÌÅÍ Á¶È¸¿¡ ¼º°øÇß½À´Ï´Ù : " + bro);
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro);
 
         if (bro.FlattenRows().Count > 0)
         {
@@ -56,36 +56,36 @@ public class BackendRank
         }
         else
         {
-            Debug.Log("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. µ¥ÀÌÅÍ »ðÀÔÀ» ½ÃµµÇÕ´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½Õ´Ï´ï¿½.");
             var bro2 = Backend.GameData.Insert(tableName);
 
             if (bro2.IsSuccess() == false)
             {
-                Debug.LogError("µ¥ÀÌÅÍ »ðÀÔ Áß ¹®Á¦°¡ ¹ß»ýÇß½À´Ï´Ù : " + bro2);
+                Debug.LogError("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro2);
                 return;
             }
 
-            Debug.Log("µ¥ÀÌÅÍ »ðÀÔ¿¡ ¼º°øÇß½À´Ï´Ù : " + bro2);
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro2);
 
             rowInDate = bro2.GetInDate();
         }
 
-        Debug.Log("³» °ÔÀÓ Á¤º¸ÀÇ rowInDate : " + rowInDate); // ÃßÃâµÈ rowIndateÀÇ °ªÀº ´ÙÀ½°ú °°½À´Ï´Ù.  
+        Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ rowInDate : " + rowInDate); // ï¿½ï¿½ï¿½ï¿½ï¿½ rowIndateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.  
 
         Param param = new Param();
         param.Add("score", score);
 
-        // ÃßÃâµÈ rowIndate¸¦ °¡Áø µ¥ÀÌÅÍ¿¡ param°ªÀ¸·Î ¼öÁ¤À» ÁøÇàÇÏ°í ·©Å·¿¡ µ¥ÀÌÅÍ¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.  
-        Debug.Log("·©Å· »ðÀÔÀ» ½ÃµµÇÕ´Ï´Ù.");
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ rowIndateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ paramï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½Å·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Õ´Ï´ï¿½.  
+        Debug.Log("ï¿½ï¿½Å· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½Õ´Ï´ï¿½.");
         var rankBro = Backend.URank.User.UpdateUserScore(rankUUID, tableName, rowInDate, param);
 
         if (rankBro.IsSuccess() == false)
         {
-            Debug.LogError("·©Å· µî·Ï Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. : " + rankBro);
+            Debug.LogError("ï¿½ï¿½Å· ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + rankBro);
             return;
         }
 
-        Debug.Log("·©Å· »ðÀÔ¿¡ ¼º°øÇß½À´Ï´Ù. : " + rankBro);
+        Debug.Log("ï¿½ï¿½Å· ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + rankBro);
     }
 
 
@@ -96,25 +96,48 @@ public class BackendRank
 
     //    if (bro.IsSuccess() == false)
     //    {
-    //        Debug.LogError("·©Å· Á¶È¸Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. : " + bro);
+    //        Debug.LogError("ï¿½ï¿½Å· ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + bro);
     //        return;
     //    }
-    //    Debug.Log("·©Å· Á¶È¸¿¡ ¼º°øÇß½À´Ï´Ù. : " + bro);
+    //    Debug.Log("ï¿½ï¿½Å· ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + bro);
 
-    //    Debug.Log("ÃÑ ·©Å· µî·Ï À¯Àú ¼ö : " + bro.GetFlattenJSON()["totalCount"].ToString());
+    //    Debug.Log("ï¿½ï¿½ ï¿½ï¿½Å· ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " + bro.GetFlattenJSON()["totalCount"].ToString());
 
     //    foreach (LitJson.JsonData jsonData in bro.FlattenRows())
     //    {
     //        StringBuilder info = new StringBuilder();
 
-    //        info.AppendLine("¼øÀ§ : " + jsonData["rank"].ToString());
-    //        info.AppendLine("´Ð³×ÀÓ : " + jsonData["nickname"].ToString());
-    //        info.AppendLine("Á¡¼ö : " + jsonData["score"].ToString());
+    //        info.AppendLine("ï¿½ï¿½ï¿½ï¿½ : " + jsonData["rank"].ToString());
+    //        info.AppendLine("ï¿½Ð³ï¿½ï¿½ï¿½ : " + jsonData["nickname"].ToString());
+    //        info.AppendLine("ï¿½ï¿½ï¿½ï¿½ : " + jsonData["score"].ToString());
     //        info.AppendLine();
     //        Debug.Log(info);
     //    }
 
     //}
+
+    public void GetPlayerData(string _nick, int _rank) {
+
+        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
+        var bro = Backend.URank.User.GetRankList(rankUUID);
+
+        LitJson.JsonData jsonData = bro.FlattenRows();
+
+        StringBuilder info = new StringBuilder();
+        StringBuilder info_s = new StringBuilder();
+
+        StringBuilder info_my = new StringBuilder();
+        StringBuilder info_mys = new StringBuilder();
+
+        info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+        info_mys.AppendLine($"{jsonData["score"].ToString()} ï¿½ï¿½");
+
+        info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
+        info_s.AppendLine($"{jsonData["score"].ToString()} ï¿½ï¿½");
+
+        _nick = jsonData["nickname"].ToString();
+        _rank = (int)jsonData["rank"];
+    }
 
     public void RankGet(TextMeshProUGUI _1st, TextMeshProUGUI _2st, TextMeshProUGUI _3st, TextMeshProUGUI _1stS, TextMeshProUGUI _2stS, TextMeshProUGUI _3stS, TextMeshProUGUI _MyR, TextMeshProUGUI _MyRS)
     {
@@ -124,10 +147,10 @@ public class BackendRank
 
         if (bro.IsSuccess() == false)
         {
-            Debug.LogError("·©Å· Á¶È¸Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. : " + bro);
+            Debug.LogError("ï¿½ï¿½Å· ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + bro);
             return;
         }
-        Debug.Log("·©Å· Á¶È¸¿¡ ¼º°øÇß½À´Ï´Ù. : " + bro);
+        Debug.Log("ï¿½ï¿½Å· ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : " + bro);
 
         if (bro.FlattenRows().Count >= 3)
         {
@@ -142,10 +165,10 @@ public class BackendRank
                 StringBuilder info_mys = new StringBuilder();
 
                 info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-                info_mys.AppendLine($"{jsonData["score"].ToString()} ÃÊ");
+                info_mys.AppendLine($"{jsonData["score"].ToString()} ï¿½ï¿½");
 
                 info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-                info_s.AppendLine($"{jsonData["score"].ToString()} ÃÊ");
+                info_s.AppendLine($"{jsonData["score"].ToString()} ï¿½ï¿½");
 
                 if (i == 0)
                 {

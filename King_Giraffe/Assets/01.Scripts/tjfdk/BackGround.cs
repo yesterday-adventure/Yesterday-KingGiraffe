@@ -22,8 +22,6 @@ public class BackGround : MonoBehaviour
 
     private void Update() {
 
-        SoundManager.instance.PlaySFX("t");
-
         // if (GameManager.instance.isStop == false) {
 
             if (menuBackGround != null) {

@@ -18,15 +18,14 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         
-        PlayerPrefs.SetInt("Tutorial", PlayerPrefs.GetInt("Tutorial", 0));
+        // PlayerPrefs.SetInt("Tutorial", PlayerPrefs.GetInt("Tutorial", 0));
 
-        if (PlayerPrefs.GetInt("Tutorial") == 0) {
+        // if (PlayerPrefs.GetInt("Tutorial") == 0) {
 
-            UIManager.instance.CutScene();
-            PlayerPrefs.Save();
-        }
-        else
-            ButtonManager.instance.MenuScene();
-        
+        //     UIManager.instance.CutScene();
+        //     PlayerPrefs.Save();
+        // }
+        // else
+        //     ButtonManager.instance.MenuScene();
     }
 }

@@ -7,9 +7,12 @@ using TMPro;
 
 public class BackendManager : MonoBehaviour
 {
+    private static BackendManager _instance = null;
+
     [SerializeField] private string userName = "";
     [SerializeField] private TMP_InputField inputField;
-
+        
+    [SerializeField] private GameObject nickInputPanel;
     [SerializeField] private TextMeshProUGUI _1st;
     [SerializeField] private TextMeshProUGUI _1stScore;
     [SerializeField] private TextMeshProUGUI _2st;
@@ -18,8 +21,21 @@ public class BackendManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _3stScore;
     [SerializeField] private TextMeshProUGUI _myRanking;
     [SerializeField] private TextMeshProUGUI _myRankingSocre;
-
+    
     int num;
+
+    public static BackendManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new BackendManager();
+            }
+
+            return _instance;
+        }
+    }
 
     private void Awake()
     {
@@ -28,16 +44,18 @@ public class BackendManager : MonoBehaviour
 
     void Start()
     {
-        var bro = Backend.Initialize(true); // 뒤끝 초기화
+        inputField.onSubmit.AddListener((inputField) => {NickName();});
 
-        // 뒤끝 초기화에 대한 응답값
+        var bro = Backend.Initialize(true); // ??? ????
+
+        // ??? ?????? ???? ????
         if (bro.IsSuccess())
         {
-            Debug.Log("초기화 성공 : " + bro); // 성공일 경우 statusCode 204 Success
+            Debug.Log("???? ???? : " + bro); // ?????? ??? statusCode 204 Success
         }
         else
         {
-            Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
+            Debug.LogError("???? ???? : " + bro); // ?????? ??? statusCode 400?? ???? ???
         }
 
         StartCoroutine(SignUpAndLoginCoroutine());
@@ -49,12 +67,12 @@ public class BackendManager : MonoBehaviour
 
         //userName = userInputName.text;  
 
-        #region 회원가입 로그인
+        #region ??????? ?α???
         BackendLogin.Instance.CustomSignUp("user" + num.ToString(), "1234");
         BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
         #endregion
 
-        #region 데이터
+        #region ??????
         BackendGameData.Instance.GameDataGet();
 
         if (BackendGameData.userData == null)
@@ -75,7 +93,7 @@ public class BackendManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("테스트를 종료합니다.");
+        Debug.Log("?????? ????????.");
     }
 
     public void NickName()
@@ -86,5 +104,8 @@ public class BackendManager : MonoBehaviour
         {
             BackendLogin.Instance.UpdateNickname(userName);
         }
+
+        Debug.Log(userName);
+        nickInputPanel.SetActive(false);
     }
 }
