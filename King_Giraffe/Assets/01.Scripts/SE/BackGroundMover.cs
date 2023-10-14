@@ -33,7 +33,6 @@ public class BackGroundMover : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)          // 나가지면
     {
-        Debug.Log(collision.gameObject.name);
         if (!collision.CompareTag("Player"))        // 플레이어 아니면 나가
             return;
 

@@ -54,5 +54,6 @@ public class PlayerHeadController : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("게임끝!");      // 여기서 게임매니져 싱글턴?에서 게임오버인거 해주기
+        ButtonManager_Game.instance.GameOverPanel();
     }
 }

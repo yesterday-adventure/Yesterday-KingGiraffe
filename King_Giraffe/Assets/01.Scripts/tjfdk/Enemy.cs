@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject gameObj;
     [SerializeField] private float maxSpeed, daleySpeed;
     [SerializeField] private float delay;
     float speed;
@@ -22,23 +23,23 @@ public class Enemy : MonoBehaviour
     private void Update() {
         
         rigid.velocity = Vector3.right * speed; // 사육사 이동
-
-        if (GameManager.instance.isStop == true) { // 게임이 끝났다면
-
-            rigid.velocity = Vector3.zero; // 사육사 정지
-            animator.SetBool("Stop", true);
-        }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) { 
-        
-        if (other.transform.CompareTag("leg")) { // 플레이어와 충돌했다면
+    private void OnCollisionEnter2D(Collision2D other) {
 
-            Debug.Log("leg");
+        if (!other.transform.CompareTag("Obs")) { // 플레이어와 충돌했다면
+
+            Debug.Log("플레이어와 충돌");
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+            Destroy(gameObj.gameObject);
+            GameManager.instance.isStop = true;
             ButtonManager_Game.instance.GameOverPanel(); // 게임오버
         } 
-        else if (other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면
+        else if(other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면
 
+            Debug.Log("장애물과 충돌");
+            SoundManager.instance.PlaySFX("hit");
             StartCoroutine(Ispeed()); // 스턴
             Destroy(other.gameObject); // 장애물 삭제
         }

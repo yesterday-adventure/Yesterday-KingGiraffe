@@ -7,25 +7,30 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [SerializeField] private GameObject cutScene;
     public bool isStop = false;
     public float score = 0;
     
     private void Awake() {
 
-        if (instance == null) instance = this;
+        if (instance == null) instance = new GameManager();
         else Destroy(this.gameObject);
     }
 
     private void Start() {
-        
-        // PlayerPrefs.SetInt("Tutorial", PlayerPrefs.GetInt("Tutorial", 0));
 
-        // if (PlayerPrefs.GetInt("Tutorial") == 0) {
+        SoundManager.instance.PlayBGM("BGM");
 
-        //     UIManager.instance.CutScene();
-        //     PlayerPrefs.Save();
-        // }
-        // else
-        //     ButtonManager.instance.MenuScene();
+        PlayerPrefs.SetInt("Tutorial", PlayerPrefs.GetInt("Tutorial", 0));
+
+        if (PlayerPrefs.GetInt("Tutorial") == 0)
+        {
+
+            UIManager.instance.CutScene();
+            PlayerPrefs.Save();
+        }
+        else
+            cutScene.SetActive(false);
     }
 }

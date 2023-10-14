@@ -42,7 +42,8 @@ public class ButtonManager_Game : MonoBehaviour
 
     public void GameOverPanel() {
 
-        GameManager.instance.isStop = true; // 게임 정지
+        SoundManager.instance.StopBGM();
+        SoundManager.instance.PlaySFX("over");
 
         BackendRank.Instance.GetPlayerData(nick, rank); // 이름, 등수 받아오기
         grade = GameManager.instance.score; // 현재 점수 받아오기
@@ -67,11 +68,13 @@ public class ButtonManager_Game : MonoBehaviour
     
     public void MenuScene() {
 
+        SoundManager.instance.PlaySFX("click");
         SceneManager.LoadScene("Menu");
     }
 
     public void GameScene() {
 
+        SoundManager.instance.PlaySFX("click");
         SceneManager.LoadScene("Game");
     }
 }

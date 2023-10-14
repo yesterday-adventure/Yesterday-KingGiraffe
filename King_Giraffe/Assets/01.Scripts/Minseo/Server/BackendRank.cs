@@ -119,7 +119,7 @@ public class BackendRank
     public void GetPlayerData(string _nick, int _rank) {
 
         string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
-        var bro = Backend.URank.User.GetRankList(rankUUID);
+        var bro = Backend.URank.User.GetRankList(rankUUID); // 오류
 
         LitJson.JsonData jsonData = bro.FlattenRows();
 

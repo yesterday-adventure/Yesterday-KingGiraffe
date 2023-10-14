@@ -40,7 +40,6 @@ public class UIManager : MonoBehaviour
         if (warning != null) { // 시작 UI
 
             warning.transform?.DOScale(0.85f, tweenDuring).SetEase(Ease.Linear).SetLoops(tweeningCount, LoopType.Yoyo).OnComplete(() => { warning.SetActive(false);});
-            GameManager.instance.Invoke("EnemySpawn", enemySpawnTime);
         }
     }
 
@@ -60,7 +59,10 @@ public class UIManager : MonoBehaviour
 
         foreach (Image scene in cutSceneList) {
 
-            scene.material.DOFade(1f, 3f).SetLoops(1, LoopType.Yoyo).OnComplete(() => {});
+            scene.DOFade(0f, 2.5f).OnComplete(() => {});
+
+            if (cutSceneList[1] == scene)
+                SoundManager.instance.PlaySFX("");
         }
     }
 }

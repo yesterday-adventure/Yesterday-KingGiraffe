@@ -18,18 +18,11 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] List<GameObject> obsstacleList; // 장애물 리스트
     [SerializeField] List<GameObject> obsPosList; // 장애물 생성 위치 리스트
     [SerializeField] List<GameObject> curObs;
-    private Dictionary<Vector2, bool> obsList;
 
     private void Awake() {
         
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
-    }
-
-    private void Start() {
-        
-        foreach (GameObject pos in obsPosList)
-            obsList.Add(pos.transform.position, false);
     }
 
     private void Update() {
@@ -41,12 +34,6 @@ public class ObstacleManager : MonoBehaviour
     }
 
     private void Reset() {
-
-        // for (int i = 0; i < obsList.Count; ++i)
-        //     obsList[obsPosList[i].transform.position] = false;
-
-        // foreach (var t in obsList)
-        //     obsList[t.Key] = false;
 
         foreach (GameObject obs in curObs)
             Destroy(obs);
@@ -62,30 +49,25 @@ public class ObstacleManager : MonoBehaviour
 
     public void ObsCount() { // 장애물 개수 증가
         
-        if (BackGround.instance.turnCount % 5 == 0)
+        if (BackGround.instance.turnCount % 5 == 0 && curObsCount < 3)
             curObsCount++;
     }
 
     public void SpawnObs() { // 장애물 생성
 
-        // Reset();
-
-        // for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
-
-        //     int ran = Random.Range(0, obsPosList.Count); // 랜덤
-
-        //     if (obsList[obsPosList[ran].transform.position] == true)        
-        //         i--;
-
-        //     curObs[i] = Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity);
-        //     obsList[obsPosList[ran].transform.position] = true;
-        // }
-
         Reset();
 
-        for (int i = 0; i < curObsCount; ++i) {
+        for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
 
-            curObs.Add(Instantiate(obsstacleList[0], obsPosList[i].transform.position, Quaternion.identity));
+            int ran = Random.Range(0, obsPosList.Count); // 랜덤
+            curObs[i] = Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity);
         }
+
+        // Reset();
+
+        // for (int i = 0; i < curObsCount; ++i) {
+
+        //     curObs.Add(Instantiate(obsstacleList[0], obsPosList[i].transform.position, Quaternion.identity));
+        // }
     }
 }

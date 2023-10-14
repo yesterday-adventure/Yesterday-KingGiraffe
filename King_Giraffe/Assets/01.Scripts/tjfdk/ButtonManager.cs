@@ -22,7 +22,6 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private bool isRanking = false;
     [SerializeField] private GameObject rankingPanel;
 
-    
 
     private void Awake() {
 
@@ -46,6 +45,7 @@ public class ButtonManager : MonoBehaviour
 
     public void SettingPanel()
     {
+        SoundManager.instance.PlaySFX("click");
 
         if (isSetting) // 판넬이 켜져있다면
         {
@@ -68,6 +68,7 @@ public class ButtonManager : MonoBehaviour
 
     public void RankingPanel()
     {
+        SoundManager.instance.PlaySFX("click");
 
         if (isRanking)
         {
@@ -89,6 +90,7 @@ public class ButtonManager : MonoBehaviour
 
     public void GameScene() {
 
+        SoundManager.instance.PlaySFX("click");
         SceneManager.LoadScene("Game");
     }
 }
