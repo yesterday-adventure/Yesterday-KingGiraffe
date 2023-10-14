@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject gameObj;
+    [SerializeField] private GameObject gameObj, bg1, bg2;
     [SerializeField] private float maxSpeed, daleySpeed;
     [SerializeField] private float delay;
     float speed;
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(other.gameObject);
             Destroy(gameObj.gameObject);
+            Destroy(bg1.GetComponent<BackGroundMover>());
+            Destroy(bg2.GetComponent<BackGroundMover>());
             GameManager.instance.isStop = true;
             ButtonManager_Game.instance.GameOverPanel(); // 게임오버
         } 

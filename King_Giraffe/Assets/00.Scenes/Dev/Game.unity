@@ -1241,6 +1241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObj: {fileID: 1140800388}
+  bg1: {fileID: 1900042712}
+  bg2: {fileID: 475798371}
   maxSpeed: 3
   daleySpeed: 0.5
   delay: 3
@@ -1499,6 +1501,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   player: {fileID: 1421383144}
+  obsPos: {fileID: 0}
 --- !u!50 &475798374
 Rigidbody2D:
   serializedVersion: 4
@@ -1654,6 +1657,7 @@ Transform:
   m_Children:
   - {fileID: 1900042713}
   - {fileID: 475798372}
+  - {fileID: 884395420}
   m_Father: {fileID: 1098801746}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &557341632
@@ -2357,14 +2361,14 @@ Transform:
   m_GameObject: {fileID: 884395419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 671253628}
   - {fileID: 676179583}
   - {fileID: 855178411}
-  m_Father: {fileID: 1900042713}
+  m_Father: {fileID: 479456638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &885822772
 GameObject:
@@ -3237,7 +3241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 391824363}
-  curObsCount: 0
+  curObsCount: 1
   obsstacleList:
   - {fileID: 3195986255765070452, guid: 91699edb39b78fa4cb95723a78414fbd, type: 3}
   - {fileID: 3195986255765070452, guid: 024f85da132998c4ea1c55ab512ca2f2, type: 3}
@@ -5042,8 +5046,7 @@ Transform:
   m_LocalPosition: {x: -9.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 884395420}
+  m_Children: []
   m_Father: {fileID: 479456638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1900042714
@@ -5074,6 +5077,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   player: {fileID: 1421383144}
+  obsPos: {fileID: 884395419}
 --- !u!50 &1900042715
 Rigidbody2D:
   serializedVersion: 4

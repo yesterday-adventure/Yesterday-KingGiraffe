@@ -17,7 +17,7 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] int curObsCount = 0; // 현재 장애물 개수
     [SerializeField] List<GameObject> obsstacleList; // 장애물 리스트
     [SerializeField] List<GameObject> obsPosList; // 장애물 생성 위치 리스트
-    [SerializeField] List<GameObject> curObs;
+    [SerializeField] List<GameObject> curObs = new List<GameObject>();
 
     private void Awake() {
         
@@ -48,19 +48,22 @@ public class ObstacleManager : MonoBehaviour
     }
 
     public void ObsCount() { // 장애물 개수 증가
+
+        Reset();
         
         if (BackGround.instance.turnCount % 5 == 0 && curObsCount < 3)
             curObsCount++;
+        
+        SpawnObs();
     }
 
     public void SpawnObs() { // 장애물 생성
 
-        Reset();
-
         for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
 
             int ran = Random.Range(0, obsPosList.Count); // 랜덤
-            curObs[i] = Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity);
+            Debug.Log(ran + " ranran");
+            curObs.Add(Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity));
         }
 
         // Reset();
