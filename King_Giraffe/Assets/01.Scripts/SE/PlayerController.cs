@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // 2. 그의 부모를 움직여서 다리가 움직이게 해주기
 
     // 움직임 관련
+    [SerializeField] GameObject playerParentX, playerX;       // 플레이어 배경 콜라이더 관련
     private bool moving = false;        // 지금 움직이는가.
     private bool ishead = false;
     private GameObject parent;          // 부모 오브젝트. 움직임 위해서
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
             hit = Physics2D.Raycast(mousePos, transform.forward, 15f);
             if (hit)
             {
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.CompareTag("leg"))
                 {
                     moving = true;
@@ -71,5 +73,10 @@ public class PlayerController : MonoBehaviour
 
             nowLeg.NinetyEuler();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        playerParentX.transform.position = new Vector3(playerX.transform.localPosition.x, 0, 0);
     }
 }

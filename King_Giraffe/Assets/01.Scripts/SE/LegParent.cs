@@ -9,7 +9,7 @@ public class LegParent : MonoBehaviour
 
     public bool NinetyEuler()       // 최대 90도까지 움직이게
     {
-        Debug.Log(parent.transform.localEulerAngles.z);      // 아 이건 절대값을 받아오니까 사용하지 못하는데
+        //Debug.Log(parent.transform.localEulerAngles.z);      // 아 이건 절대값을 받아오니까 사용하지 못하는데
 
         if (parent.transform.localEulerAngles.z > 90 && parent.transform.localEulerAngles.z < 180)       //90도가 넘었으면
         {
