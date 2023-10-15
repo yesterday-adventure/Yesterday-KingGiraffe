@@ -72,7 +72,7 @@ public class ButtonManager : MonoBehaviour
 
         if (isRanking)
         {
-
+            //BackendManager.Instance.GetRanking();
             isRanking = !isRanking; // 현재 판넬 상태 반전
             rankingPanel.transform.DOScale(0.25f, 0.5f).SetEase(Ease.OutExpo).OnComplete(() => {
                 rankingPanel.SetActive(!rankingPanel.activeSelf);

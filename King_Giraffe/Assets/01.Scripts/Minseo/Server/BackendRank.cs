@@ -6,15 +6,11 @@ using TMPro;
 
 // �ڳ� SDK namespace �߰�
 using BackEnd;
+using System;
 
 public class BackendRank
 {
     private static BackendRank _instance = null;
-
-    [SerializeField] private TextMeshProUGUI _1st;
-    [SerializeField] private TextMeshProUGUI _2st;
-    [SerializeField] private TextMeshProUGUI _3st;
-    [SerializeField] private TextMeshProUGUI _myRanking;
 
     public static BackendRank Instance
     {
@@ -28,12 +24,11 @@ public class BackendRank
             return _instance;
         }
     }
-    
-     
+
+    string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
+
     public void RankInsert(float score)
     {
-        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
-
         string tableName = "KingGireaffe";
         string rowInDate = string.Empty;
 
@@ -117,32 +112,47 @@ public class BackendRank
     //}
 
     public void GetPlayerData(string _nick, int _rank) {
+        try
+        {
+            var bro = Backend.URank.User.GetRankList(rankUUID);
+            // 나머지 코드
 
-        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
-        var bro = Backend.URank.User.GetRankList(rankUUID); // 오류
+            if (bro == null)
+            {
+                Debug.LogError("GetRankList returned null");
+                return;
+            }
 
-        LitJson.JsonData jsonData = bro.FlattenRows();
+            string _n;
 
-        StringBuilder info = new StringBuilder();
-        StringBuilder info_s = new StringBuilder();
+            LitJson.JsonData jsonData = bro.FlattenRows();
 
-        StringBuilder info_my = new StringBuilder();
-        StringBuilder info_mys = new StringBuilder();
+            StringBuilder info_my = new StringBuilder();
+            StringBuilder info_mys = new StringBuilder();
 
-        info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-        info_mys.AppendLine($"{jsonData["score"].ToString()} ��");
+            info_mys.AppendLine($"{jsonData["rank"].ToString()} 초");
 
-        info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-        info_s.AppendLine($"{jsonData["score"].ToString()} ��");
+            info_my.AppendLine(jsonData["nickname"].ToString());
 
-        _nick = jsonData["nickname"].ToString();
-        _rank = (int)jsonData["rank"];
+            _nick = info_my.ToString();
+
+            _n = info_mys.ToString();
+
+            _rank = int.Parse(_n);
+
+            Debug.Log(_nick);
+            Debug.Log(_rank);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("An exception occurred: " + ex.Message);
+        }
+
+        
     }
 
     public void RankGet(TextMeshProUGUI _1st, TextMeshProUGUI _2st, TextMeshProUGUI _3st, TextMeshProUGUI _1stS, TextMeshProUGUI _2stS, TextMeshProUGUI _3stS, TextMeshProUGUI _MyR, TextMeshProUGUI _MyRS)
     {
-
-        string rankUUID = "b2c6b260-6915-11ee-87dc-6333dd683f21";
         var bro = Backend.URank.User.GetRankList(rankUUID);
 
         if (bro.IsSuccess() == false)
@@ -165,10 +175,10 @@ public class BackendRank
                 StringBuilder info_mys = new StringBuilder();
 
                 info_my.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-                info_mys.AppendLine($"{jsonData["score"].ToString()} ��");
+                info_mys.AppendLine($"{jsonData["score"].ToString()} 초");
 
                 info.AppendLine($"{jsonData["rank"].ToString()}    #{jsonData["nickname"].ToString()}");
-                info_s.AppendLine($"{jsonData["score"].ToString()} ��");
+                info_s.AppendLine($"{jsonData["score"].ToString()} 초");
 
                 if (i == 0)
                 {

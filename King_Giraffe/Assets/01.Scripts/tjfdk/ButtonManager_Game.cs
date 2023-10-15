@@ -41,6 +41,7 @@ public class ButtonManager_Game : MonoBehaviour
     }
 
     public void GameOverPanel() {
+        BackendManager.Instance.RankingInsert();
 
         SoundManager.instance.StopBGM();
         SoundManager.instance.PlaySFX("over");

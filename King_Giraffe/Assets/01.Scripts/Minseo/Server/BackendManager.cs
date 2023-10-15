@@ -61,18 +61,20 @@ public class BackendManager : MonoBehaviour
         StartCoroutine(SignUpAndLoginCoroutine());
     }
 
+
+
     private IEnumerator SignUpAndLoginCoroutine()
     {
         num = Random.Range(0, 9999);
 
         //userName = userInputName.text;  
 
-        #region ??????? ?α???
+        #region 로그인 회원가입
         BackendLogin.Instance.CustomSignUp("user" + num.ToString(), "1234");
         BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
         #endregion
 
-        #region ??????
+        #region 데이터 
         BackendGameData.Instance.GameDataGet();
 
         if (BackendGameData.userData == null)
@@ -85,15 +87,21 @@ public class BackendManager : MonoBehaviour
         BackendGameData.Instance.GameDataUpdate();
         #endregion
 
-        BackendRank.Instance.RankInsert((float)1.4);
-        //BackendRank.Instance.RankInsert((float)GameManager.instance.score);
-
-        BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
-        //BackendRank.Instance.RankGet();
+        GetRanking();
 
         yield return new WaitForSeconds(2f);
 
         Debug.Log("?????? ????????.");
+    }
+
+    public void RankingInsert()
+    {
+        BackendRank.Instance.RankInsert((float)GameManager.instance.score);   
+    }
+
+    public void GetRanking()
+    {
+        BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
     }
 
     public void NickName()
