@@ -9,6 +9,7 @@ public class BackGroundMover : MonoBehaviour
     public UnityEvent<float> move;
 
     [SerializeField] private Transform player;
+    [SerializeField] private GameObject obsPos;
     private float nowplayerX;
     private float moveX;
 
@@ -19,7 +20,7 @@ public class BackGroundMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (nowplayerX < player.position.x)        // ÇÃ·¹ÀÌ¾î²¨°¡ ´õ Å©¸é
+        if (nowplayerX < player.position.x)        // ï¿½Ã·ï¿½ï¿½Ì¾î²¨ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½
         {
             moveX = 19.2f;
         }
@@ -31,13 +32,16 @@ public class BackGroundMover : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)          // ³ª°¡Áö¸é
+    private void OnTriggerExit2D(Collider2D collision)          // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        if (!collision.CompareTag("Player"))        // ÇÃ·¹ÀÌ¾î ¾Æ´Ï¸é ³ª°¡
+        if (!collision.CompareTag("Player"))        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             return;
 
-        Debug.Log("dsdf");
         transform.position = new Vector3(transform.position.x + (moveX * 2), transform.position.y, 0);
+        if (obsPos != null)
+            obsPos.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        BackGround.instance.turnCount++;
+        ObstacleManager.instance.ObsCount();
         move?.Invoke(moveX);
     }
 }
