@@ -33,7 +33,7 @@ public class ObstacleManager : MonoBehaviour
             ObsCount();
     }
 
-    private void Reset() {
+    public void Reset() {
 
         foreach (GameObject obs in curObs)
             Destroy(obs);
@@ -48,8 +48,6 @@ public class ObstacleManager : MonoBehaviour
     }
 
     public void ObsCount() { // 장애물 개수 증가
-
-        Reset();
         
         if (BackGround.instance.turnCount % 5 == 0 && curObsCount < 3)
             curObsCount++;
@@ -62,7 +60,6 @@ public class ObstacleManager : MonoBehaviour
         for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
 
             int ran = Random.Range(0, obsPosList.Count); // 랜덤
-            Debug.Log(ran + " ranran");
             curObs.Add(Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity));
         }
 

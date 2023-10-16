@@ -40,8 +40,14 @@ public class BackGroundMover : MonoBehaviour
         transform.position = new Vector3(transform.position.x + (moveX * 2), transform.position.y, 0);
         if (obsPos != null)
             obsPos.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        BackGround.instance.turnCount++;
-        ObstacleManager.instance.ObsCount();
+
+        ObstacleManager.instance.Reset(); // 현재 장애물 모두 삭제
+        if (moveX > 0) // 뒤로 후진한 게 아니라면...
+        {
+            BackGround.instance.turnCount++; // 화면 넘어간 수 체크
+            ObstacleManager.instance.ObsCount(); // 장애물 생성
+        }
+
         move?.Invoke(moveX);
     }
 }

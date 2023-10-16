@@ -88,7 +88,7 @@ public class BackendManager : MonoBehaviour
         //BackendGameData.Instance.GameDataUpdate();
         #endregion
 
-        GetRanking();
+        //GetRanking();
 
         yield return new WaitForSeconds(2f);
 
@@ -100,10 +100,10 @@ public class BackendManager : MonoBehaviour
         BackendRank.Instance.RankInsert((float)GameManager.instance.score);   
     }
 
-    public void GetRanking()
-    {
-        BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
-    }
+    //public void GetRanking()
+    //{
+    //    BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
+    //}
 
     public void NickName()
     {
