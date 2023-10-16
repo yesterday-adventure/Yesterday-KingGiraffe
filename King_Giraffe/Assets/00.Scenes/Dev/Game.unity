@@ -1166,7 +1166,7 @@ MonoBehaviour:
   gameObj: {fileID: 1140800388}
   bg1: {fileID: 1900042712}
   bg2: {fileID: 475798371}
-  maxSpeed: 3
+  maxSpeed: 0.5
   daleySpeed: 0.5
   delay: 3
 --- !u!95 &391824369
