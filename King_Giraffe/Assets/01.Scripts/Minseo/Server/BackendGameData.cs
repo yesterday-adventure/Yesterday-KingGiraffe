@@ -7,7 +7,7 @@ using BackEnd;
 
 public class UserData
 {
-    public float score = 0f;
+    public float score = 0.0f;
 
     // µð¹ö±ë 
     public override string ToString()
@@ -118,7 +118,7 @@ public class BackendGameData
         }
 
         Param param = new Param();
-        param.Add("Score", userData.score);
+        param.Add("score", userData.score);
 
         BackendReturnObject bro = null;
 

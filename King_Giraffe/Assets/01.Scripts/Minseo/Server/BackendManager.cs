@@ -4,12 +4,13 @@ using System.Collections;
 using System.Threading.Tasks;
 using BackEnd;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BackendManager : MonoBehaviour
 {
     private static BackendManager _instance = null;
 
-    [SerializeField] private string userName = "";
+    public string userName = "";
     [SerializeField] private TMP_InputField inputField;
         
     [SerializeField] private GameObject nickInputPanel;
@@ -84,7 +85,7 @@ public class BackendManager : MonoBehaviour
 
         BackendGameData.Instance.SocreUp();
 
-        BackendGameData.Instance.GameDataUpdate();
+        //BackendGameData.Instance.GameDataUpdate();
         #endregion
 
         GetRanking();
@@ -114,6 +115,7 @@ public class BackendManager : MonoBehaviour
         }
 
         Debug.Log(userName);
+        SceneManager.LoadScene("Menu");
         nickInputPanel.SetActive(false);
     }
 }

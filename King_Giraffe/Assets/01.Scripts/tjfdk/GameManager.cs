@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject cutScene;
     public bool isStop = false;
-    public float score = 0;
+    public float score = 0.0f;
     
     private void Awake() {
 
