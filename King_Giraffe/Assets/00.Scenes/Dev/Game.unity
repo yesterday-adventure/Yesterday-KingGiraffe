@@ -1424,7 +1424,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   player: {fileID: 1421383144}
-  obsPos: {fileID: 0}
+  obsPos: {fileID: 884395419}
 --- !u!50 &475798374
 Rigidbody2D:
   serializedVersion: 4
@@ -2284,7 +2284,7 @@ Transform:
   m_GameObject: {fileID: 884395419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
