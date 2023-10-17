@@ -5390,7 +5390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuBackGround: {fileID: 2028065195}
-  gameBackGround: {fileID: 0}
   turnCount: 0
 --- !u!114 &1797875509
 MonoBehaviour:

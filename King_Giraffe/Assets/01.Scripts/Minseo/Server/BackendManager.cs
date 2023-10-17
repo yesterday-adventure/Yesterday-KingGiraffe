@@ -78,17 +78,15 @@ public class BackendManager : MonoBehaviour
         #region µ•¿Ã≈Õ 
         BackendGameData.Instance.GameDataGet();
 
-        if (BackendGameData.userData == null)
-        {
+        //if (BackendGameData.userData == null)
+        //{
             BackendGameData.Instance.GameDataInsert();
-        }
+        //}
 
-        BackendGameData.Instance.SocreUp();
-
-        //BackendGameData.Instance.GameDataUpdate();
+        BackendGameData.Instance.GameDataUpdate();
         #endregion
 
-        //GetRanking();
+        GetRanking();
 
         yield return new WaitForSeconds(2f);
 
@@ -100,16 +98,16 @@ public class BackendManager : MonoBehaviour
         BackendRank.Instance.RankInsert((float)GameManager.instance.score);   
     }
 
-    //public void GetRanking()
-    //{
-    //    BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
-    //}
+    public void GetRanking()
+    {
+        BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
+    }
 
     public void NickName()
     {
         userName = inputField.text;
 
-        if (userName != "")
+        if (userName == "")
         {
             BackendLogin.Instance.UpdateNickname(userName);
         }
