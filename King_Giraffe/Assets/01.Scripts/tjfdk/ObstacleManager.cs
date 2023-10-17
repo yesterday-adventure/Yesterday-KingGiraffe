@@ -62,12 +62,5 @@ public class ObstacleManager : MonoBehaviour
             int ran = Random.Range(0, obsPosList.Count); // 랜덤
             curObs.Add(Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity));
         }
-
-        // Reset();
-
-        // for (int i = 0; i < curObsCount; ++i) {
-
-        //     curObs.Add(Instantiate(obsstacleList[0], obsPosList[i].transform.position, Quaternion.identity));
-        // }
     }
 }
