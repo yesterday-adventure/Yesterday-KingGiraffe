@@ -30,10 +30,13 @@ public class ButtonManager_Game : MonoBehaviour
         best.SetActive(false); // 이미지 활성화 초기화
     }
 
-    private void Update() {
-        
-        if (Input.GetKeyDown(KeyCode.T))
-            GameOverPanel();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ObstacleManager.instance.Reset();
+            Application.Quit();
+        }
     }
 
     public void GameOverPanel() {
