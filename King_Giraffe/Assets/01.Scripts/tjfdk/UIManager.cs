@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [Header("Score")]
     [SerializeField] private TextMeshProUGUI timerTxt;
 
+    [Header("Point")]
+    [SerializeField] private Slider dashGage;
+
     [Header("CutScene")]
     [SerializeField] private List<Image> cutSceneList;
 
@@ -47,12 +50,14 @@ public class UIManager : MonoBehaviour
         
         if (GameManager.instance.isStop == false && timerTxt != null) { // 현재 타이머
                 
-                if (timerTxt != null) {
+            if (timerTxt != null) {
 
-                    GameManager.instance.score += Time.deltaTime;
-                    timerTxt.text = GameManager.instance.score.ToString("N2") + "초";
-                }
+                GameManager.instance.score += Time.deltaTime;
+                timerTxt.text = GameManager.instance.score.ToString("N2") + "초";
+            }
         }
+
+        dashGage.value = PointManager.Instance.curPoint;
     }
 
     public void CutScene() {
