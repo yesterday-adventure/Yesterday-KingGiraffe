@@ -20,9 +20,14 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D hit;       // 맞는 오브젝트
     private Vector3 mousePos;       // 지금 마우스 포지션
 
+    // 데쉬관련
+    private Rigidbody2D playerBody;
+    [SerializeField] private Vector2 dash = new Vector2(10, 5);
+
     private void Start()
     {
         main = Camera.main;
+        playerBody = playerX.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -73,6 +78,12 @@ public class PlayerController : MonoBehaviour
 
             nowLeg.NinetyEuler();
         }
+    }
+
+    public void Dash()
+    {
+        Debug.Log("플레이어 데쉬");
+        playerBody.AddForce(new Vector2(dash.x, dash.y), ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
