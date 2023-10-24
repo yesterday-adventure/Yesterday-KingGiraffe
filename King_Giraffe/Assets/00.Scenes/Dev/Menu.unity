@@ -5169,7 +5169,7 @@ GameObject:
   - component: {fileID: 1797875513}
   - component: {fileID: 1797875515}
   - component: {fileID: 1797875512}
-  - component: {fileID: 1797875511}
+  - component: {fileID: 1797875519}
   - component: {fileID: 1797875510}
   - component: {fileID: 1797875509}
   - component: {fileID: 1797875508}
@@ -5433,29 +5433,6 @@ MonoBehaviour:
   - {fileID: 1797875517}
   - {fileID: 1797875516}
   playSoundName: []
---- !u!114 &1797875511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797875505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75edb99ffc89eb48bf392b3d85391e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userName: 
-  inputField: {fileID: 1360088336}
-  nickInputPanel: {fileID: 88178644}
-  _1st: {fileID: 431364939}
-  _1stScore: {fileID: 1709129545}
-  _2st: {fileID: 2007548320}
-  _2stSocre: {fileID: 402484507}
-  _3st: {fileID: 1382346986}
-  _3stScore: {fileID: 883594212}
-  _myRanking: {fileID: 1552915332}
-  _myRankingSocre: {fileID: 1294293090}
 --- !u!114 &1797875512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5811,6 +5788,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1797875519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797875505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530b29444a7a90445ac066845d73ea4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _1st: {fileID: 431364939}
+  _1stScore: {fileID: 1709129545}
+  _2st: {fileID: 2007548320}
+  _2stSocre: {fileID: 402484507}
+  _3st: {fileID: 1382346986}
+  _3stScore: {fileID: 883594212}
+  _myRanking: {fileID: 1552915332}
+  _myRankingSocre: {fileID: 1294293090}
 --- !u!1 &1901446453
 GameObject:
   m_ObjectHideFlags: 0
