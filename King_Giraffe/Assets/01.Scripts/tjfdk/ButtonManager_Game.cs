@@ -9,6 +9,8 @@ public class ButtonManager_Game : MonoBehaviour
 {
     static public ButtonManager_Game instance;
 
+    private BackendMenu _backendMenu;
+
     [Header("GameOver")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI gradeTxt1, gradeTxt2, rankTxt;
@@ -16,7 +18,7 @@ public class ButtonManager_Game : MonoBehaviour
     public float grade, bestGrade;
 
     private void Awake() {
-        
+        _backendMenu = GetComponent<BackendMenu>();
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
     }
@@ -37,12 +39,13 @@ public class ButtonManager_Game : MonoBehaviour
     }
 
     public void GameOverPanel() {
-        BackendManager.Instance.RankingInsert();
 
         SoundManager.instance.StopBGM();
         SoundManager.instance.PlaySFX("over");
 
         grade = GameManager.instance.score; // 현재 점수 받아오기
+        Debug.Log(GameManager.instance.score);
+        //_backendMenu.RankingInsert((float)GameManager.instance.score);
 
         gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초"; // 현재 점수 표시
         gradeTxt2.text = grade.ToString("N2") + "초"; // 현재 점수 표시

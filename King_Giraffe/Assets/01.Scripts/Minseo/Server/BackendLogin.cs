@@ -64,6 +64,7 @@ public class BackendLogin
         if (bro.IsSuccess())
         {
             Debug.Log("닉네임 변경에 성공했습니다 : " + bro);
+            Debug.Log(Backend.BMember.UpdateNickname(nickname));
         }
         else
         {
