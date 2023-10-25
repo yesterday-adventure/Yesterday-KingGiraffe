@@ -48,7 +48,6 @@ public class Data : MonoBehaviour
     public string LoadData()
     {
         userName = PlayerPrefs.GetString("userName");
-        Debug.Log(userName);
         return userName;
     }
 }

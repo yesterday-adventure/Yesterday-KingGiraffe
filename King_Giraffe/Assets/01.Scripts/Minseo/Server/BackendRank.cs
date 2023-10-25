@@ -94,49 +94,130 @@ public class BackendRank
         }
         Debug.Log("랭킹 조회에 성공했습니다. : " + bro);
 
-        if (bro.FlattenRows().Count >= 3)
+
+        for (int i = 0; i < bro.FlattenRows().Count; i++)
         {
-            for (int i = 0; i < 3; i++)
+            LitJson.JsonData jsonData = bro.FlattenRows()[i];
+
+            StringBuilder info = new StringBuilder();
+            StringBuilder info_s = new StringBuilder();
+
+            info.AppendLine($"{jsonData["rank"]}    #{jsonData["nickname"]}");
+            info_s.AppendLine(string.Format("{0:0.00} 초", (float)(double)jsonData["score"]));
+
+            #region 시간 없어서 쓴 비효율 적인 코드 나중에 수정할 것 
+            if (i == 0)
             {
-                LitJson.JsonData jsonData = bro.FlattenRows()[i];
-
-                StringBuilder info = new StringBuilder();
-                StringBuilder info_s = new StringBuilder();
-
-                StringBuilder info_my = new StringBuilder();
-                StringBuilder info_mys = new StringBuilder();
-
-                info.AppendLine($"{jsonData["rank"]}    #{jsonData["nickname"]}");
-                info_s.AppendLine(string.Format("{0:0.00} 초", (float)(double)jsonData["score"]));
-
-                info_my.AppendLine($"{jsonData["rank"]}    #{jsonData["nickname"]}");
-                info_mys.AppendLine(string.Format("{0:0.00} 초", (float)(double)jsonData["score"]));
-
-
-                if (i == 0)
-                {
-                    _1st.text = info.ToString();
-                    _1stS.text = info_s.ToString();
-                }
-                else if (i == 1)
-                {
-                    _2st.text = info.ToString();
-                    _2stS.text = info_s.ToString();
-                }
-                else if (i == 2)
-                {
-                    _3st.text = info.ToString();
-                    _3stS.text = info_s.ToString();
-                }
-
-                _MyR.text = Data.Instance.LoadData();
-                Debug.Log(Data.Instance.LoadData());
-                _MyRS.text = GameManager.instance.score.ToString() + " 초";
+                _1st.text = info.ToString();
+                _1stS.text = info_s.ToString();
             }
-        }
-        else
-        {
-            Debug.Log("Not enough ranking data to display.");
+            else if (i == 1)
+            {
+                _2st.text = info.ToString();
+                _2stS.text = info_s.ToString();
+            }
+            else if (i == 2)
+            {
+                _3st.text = info.ToString();
+                _3stS.text = info_s.ToString();
+            }
+            else if (i == 3)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 4)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 5)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 6)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 7)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 8)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 9)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 10)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 11)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 12)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 13)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            else if (i == 14)
+            {
+                if (jsonData["nickname"].ToString() == Data.Instance.LoadData())
+                {
+                    _MyR.text = info.ToString();
+                    _MyRS.text = info_s.ToString();
+                }
+            }
+            #endregion
         }
     }
 }
