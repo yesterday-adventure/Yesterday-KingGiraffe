@@ -44,6 +44,12 @@ public class UIManager : MonoBehaviour
 
             warning.transform?.DOScale(0.85f, tweenDuring).SetEase(Ease.Linear).SetLoops(tweeningCount, LoopType.Yoyo).OnComplete(() => { warning.SetActive(false);});
         }
+
+        if (dashGage != null)
+        {
+            dashGage.maxValue = PointManager.Instance.pointMax;
+            dashGage.value = 0;
+        }
     }
 
     private void Update() {
@@ -56,8 +62,9 @@ public class UIManager : MonoBehaviour
                 timerTxt.text = GameManager.instance.score.ToString("N2") + "초";
             }
         }
-
-        dashGage.value = PointManager.Instance.curPoint;
+        
+        if (dashGage != null)
+            dashGage.value = PointManager.Instance.curPoint;
     }
 
     public void CutScene() {

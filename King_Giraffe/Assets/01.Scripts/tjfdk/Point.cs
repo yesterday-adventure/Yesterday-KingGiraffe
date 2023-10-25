@@ -8,10 +8,14 @@ public class Point : MonoBehaviour
     {
         if (collision.CompareTag("leg"))
         {
-            PointManager.Instance.curPoint += 1;
+            Debug.Log(collision.name);
+            PointManager.Instance.curPoint++;
             if (PointManager.Instance.curPoint >= PointManager.Instance.pointMax)
+            {
                 PointManager.Instance.canDash = true;
+            }
             Destroy(gameObject);
         }
     }
 }
+

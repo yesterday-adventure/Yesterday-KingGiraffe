@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
-    private static PointManager _instance = null;
+    private static PointManager _instance;
 
-    public static PointManager Instance
+    public static PointManager Instance;
+    private void Awake()
     {
-        get
+        if (Instance == null)
         {
-            if (_instance == null)
-            {
-                _instance = new PointManager();
-            }
-
-            return _instance;
+            Instance = this;
         }
     }
 

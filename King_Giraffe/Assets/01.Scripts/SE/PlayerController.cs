@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
 
     public void Dash()
     {
-        Debug.Log("플레이어 데쉬");
         if (PointManager.Instance.canDash)
         {
             playerBody.AddForce(new Vector2(dash.x, dash.y), ForceMode2D.Impulse);
