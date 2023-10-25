@@ -3378,7 +3378,7 @@ MonoBehaviour:
   enemy: {fileID: 391824363}
   curObsCount: 1
   obsstacleList:
-  - {fileID: 3195986255765070452, guid: 91699edb39b78fa4cb95723a78414fbd, type: 3}
+  - {fileID: 3195986255765070452, guid: c839ff1657c0ad74481d6c61c1f0c70a, type: 3}
   - {fileID: 3195986255765070452, guid: 024f85da132998c4ea1c55ab512ca2f2, type: 3}
   - {fileID: 3195986255765070452, guid: a80423ddb2b7d89408ce19bb2fdb3eaa, type: 3}
   - {fileID: 3195986255765070452, guid: 00956bdc14215cc4796279998b96fd1b, type: 3}
