@@ -16,17 +16,16 @@ public class ObstacleManager : MonoBehaviour
     [Header("Obstacle")]
     [SerializeField] int curObsCount = 0; // 현재 장애물 개수
     [SerializeField] List<GameObject> obsstacleList; // 장애물 리스트
-    [SerializeField] List<GameObject> obsPosList; // 장애물 생성 위치 리스트
-    [SerializeField] List<bool> obsPosVisitList = new List<bool>();
+    //[SerializeField] List<GameObject> obsPosList; // 장애물 생성 위치 리스트
+    //[SerializeField] List<bool> obsPosVisitList = new List<bool>();
     [SerializeField] List<GameObject> curObs = new List<GameObject>();
+
+    [SerializeField] private GameObject _player;
 
     private void Awake() {
         
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
-
-        for (int i = 0; i < obsPosList.Count; ++i)
-            obsPosVisitList.Add(false);
     }
 
     private void Update() {
@@ -41,9 +40,6 @@ public class ObstacleManager : MonoBehaviour
 
         foreach (GameObject obs in curObs)
             Destroy(obs);
-
-        for (int i = 0; i < obsPosVisitList.Count; ++i)
-            obsPosVisitList[i] = false;
             
         curObs.Clear();
     }
@@ -66,14 +62,12 @@ public class ObstacleManager : MonoBehaviour
 
         for (int i = 0; i < curObsCount; ++i) { // 장애물 생성
 
-            int ran = Random.Range(0, obsPosList.Count); // 랜덤
-            if (obsPosVisitList[ran] == false)
-            {
-                curObs.Add(Instantiate(obsstacleList[Random.Range(0, obsPosList.Count)], obsPosList[ran].transform.position, Quaternion.identity));
-                obsPosVisitList[ran] = true;
-            }
-            else
-                --i;
+            int ran = Random.Range((int)_player.transform.position.x + 20
+                , (int)_player.transform.position.x + 40); // 랜덤
+            Debug.Log(ran);
+
+            Vector2 dir = new Vector2(ran, -4.3f);
+            curObs.Add(Instantiate(obsstacleList[Random.Range(0, obsstacleList.Count)], dir, Quaternion.identity));
         }
     }
 }

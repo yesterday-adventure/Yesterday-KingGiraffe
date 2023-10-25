@@ -3382,12 +3382,8 @@ MonoBehaviour:
   - {fileID: 3195986255765070452, guid: 024f85da132998c4ea1c55ab512ca2f2, type: 3}
   - {fileID: 3195986255765070452, guid: a80423ddb2b7d89408ce19bb2fdb3eaa, type: 3}
   - {fileID: 3195986255765070452, guid: 00956bdc14215cc4796279998b96fd1b, type: 3}
-  obsPosList:
-  - {fileID: 671253627}
-  - {fileID: 676179582}
-  - {fileID: 855178410}
-  obsPosVisitList: 
   curObs: []
+  _player: {fileID: 1421383143}
 --- !u!114 &1063107098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3687,6 +3683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b136423db71159d41888b58eaa0353e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1421383143}
+  point: {fileID: 370338260341976219, guid: d85f66a57c9e0fd43a58dc6c5537d710, type: 3}
   canDash: 0
   curPoint: 0
   pointMax: 3
