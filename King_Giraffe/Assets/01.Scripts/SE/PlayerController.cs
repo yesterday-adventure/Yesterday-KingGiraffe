@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     // 데쉬관련
     private Rigidbody2D playerBody;
+    [SerializeField] private GameObject gas, gasPos;
     [SerializeField] private Vector2 dash = new Vector2(10, 5);
 
     private void Start()
@@ -88,6 +90,8 @@ public class PlayerController : MonoBehaviour
         if (PointManager.Instance.canDash)
         {
             playerBody.AddForce(new Vector2(dash.x, dash.y), ForceMode2D.Impulse);
+            Quaternion rotate = Quaternion.Euler(0, 0, -90);
+            Instantiate(gas, gasPos.transform.position, rotate);
             PointManager.Instance.ResetDash();
         }
     }
