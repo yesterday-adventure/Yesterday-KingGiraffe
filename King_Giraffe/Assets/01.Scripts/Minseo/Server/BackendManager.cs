@@ -1,44 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Threading.Tasks;
 using BackEnd;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class BackendManager : MonoBehaviour
 {
-    private static BackendManager _instance = null;
-
-    public string userName = "";
-    [SerializeField] private TMP_InputField inputField;
-    
     int num;
-
-    public static BackendManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new BackendManager();
-            }
-
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        //userName = inputField.GetComponent<TMP_InputField>().text;
-    }
 
     void Start()
     {
-        userName = inputField.GetComponent<TMP_InputField>().text;
-
-        inputField.onSubmit.AddListener((inputField) => { NickName(); });
-
         var bro = Backend.Initialize(true);
 
         if (bro.IsSuccess())
@@ -64,7 +37,7 @@ public class BackendManager : MonoBehaviour
         BackendLogin.Instance.CustomLogin("user" + num.ToString(), "1234");
         #endregion
 
-        #region 데이터 
+        #region 데이터
         BackendGameData.Instance.GameDataGet();
 
         if (BackendGameData.userData == null)
@@ -80,13 +53,5 @@ public class BackendManager : MonoBehaviour
         Debug.Log("끝");
     }
 
-    public void NickName()
-    {
-        userName = inputField.text;
-
-        BackendLogin.Instance.UpdateNickname(userName);
-
-        Debug.Log(userName);
-        SceneManager.LoadScene("Menu");
-    }
+    
 }

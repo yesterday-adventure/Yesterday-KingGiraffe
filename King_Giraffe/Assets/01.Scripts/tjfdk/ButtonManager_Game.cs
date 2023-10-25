@@ -52,7 +52,7 @@ public class ButtonManager_Game : MonoBehaviour
 
         gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초"; // 현재 점수 표시
         gradeTxt2.text = grade.ToString("N2") + "초"; // 현재 점수 표시
-        rankTxt.text = BackendManager.Instance.userName;
+        rankTxt.text = Data.Instance.LoadData();
 
         gameOverPanel.SetActive(true); // 판넬 활성화
         gameOverPanel.transform.DOScale(1f, 0.5f).SetEase(Ease.OutExpo); // 판넬 활성화 효과

@@ -19,7 +19,8 @@ public class BackendMenu : MonoBehaviour
     private void Start()
     {
         GetRanking();
-        Debug.Log(BackendManager.Instance.userName);
+        Data.Instance.LoadData();
+        Debug.Log(Data.Instance.LoadData());
     }
 
     public void GetRanking()
