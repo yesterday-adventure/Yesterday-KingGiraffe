@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [Header("Score")]
     [SerializeField] private TextMeshProUGUI timerTxt;
 
+    [Header("Point")]
+    [SerializeField] private Slider dashGage;
+
     [Header("CutScene")]
     [SerializeField] private List<Image> cutSceneList;
 
@@ -41,18 +44,27 @@ public class UIManager : MonoBehaviour
 
             warning.transform?.DOScale(0.85f, tweenDuring).SetEase(Ease.Linear).SetLoops(tweeningCount, LoopType.Yoyo).OnComplete(() => { warning.SetActive(false);});
         }
+
+        if (dashGage != null)
+        {
+            dashGage.maxValue = PointManager.Instance.pointMax;
+            dashGage.value = 0;
+        }
     }
 
     private void Update() {
         
         if (GameManager.instance.isStop == false && timerTxt != null) { // 현재 타이머
                 
-                if (timerTxt != null) {
+            if (timerTxt != null) {
 
-                    GameManager.instance.score += Time.deltaTime;
-                    timerTxt.text = GameManager.instance.score.ToString("N2") + "초";
-                }
+                GameManager.instance.score += Time.deltaTime;
+                timerTxt.text = GameManager.instance.score.ToString("N2") + "초";
+            }
         }
+        
+        if (dashGage != null)
+            dashGage.value = PointManager.Instance.curPoint;
     }
 
     public void CutScene() {

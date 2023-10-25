@@ -78,12 +78,18 @@ public class PlayerController : MonoBehaviour
 
             nowLeg.NinetyEuler();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Dash();
     }
 
     public void Dash()
     {
-        Debug.Log("플레이어 데쉬");
-        playerBody.AddForce(new Vector2(dash.x, dash.y), ForceMode2D.Impulse);
+        if (PointManager.Instance.canDash)
+        {
+            playerBody.AddForce(new Vector2(dash.x, dash.y), ForceMode2D.Impulse);
+            PointManager.Instance.ResetDash();
+        }
     }
 
     private void FixedUpdate()
