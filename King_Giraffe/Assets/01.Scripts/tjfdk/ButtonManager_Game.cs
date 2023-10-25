@@ -47,8 +47,10 @@ public class ButtonManager_Game : MonoBehaviour
         SoundManager.instance.PlaySFX("over");
 
         grade = GameManager.instance.score; // 현재 점수 받아오기
-        Debug.Log(GameManager.instance.score);
         //_backendMenu.RankingInsert((float)GameManager.instance.score);
+        BackendRank.Instance.RankInsert((float)GameManager.instance.score);
+        Debug.Log(GameManager.instance.score);
+
 
         gradeTxt1.text = "버틴 시간 " + grade.ToString("N2") + "초"; // 현재 점수 표시
         gradeTxt2.text = grade.ToString("N2") + "초"; // 현재 점수 표시

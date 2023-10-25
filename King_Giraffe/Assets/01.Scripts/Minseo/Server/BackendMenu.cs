@@ -27,9 +27,4 @@ public class BackendMenu : MonoBehaviour
     {
         BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
     }
-
-    public void RankingInsert(float score)
-    {
-        BackendRank.Instance.RankInsert(score);
-    }
 }
