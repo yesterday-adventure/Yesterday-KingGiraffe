@@ -18,9 +18,10 @@ public class BackendMenu : MonoBehaviour
 
     private void Start()
     {
-        GetRanking();
         Data.Instance.LoadData();
-        Debug.Log(Data.Instance.LoadData());
+        _myRanking.text = $"-    #{Data.Instance.LoadData()}";
+        _myRankingSocre.text = "0.00 √ ";
+        GetRanking();
     }
 
     public void GetRanking()
