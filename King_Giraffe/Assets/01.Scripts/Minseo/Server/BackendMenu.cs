@@ -19,16 +19,12 @@ public class BackendMenu : MonoBehaviour
     private void Start()
     {
         GetRanking();
-        Debug.Log(BackendManager.Instance.userName);
+        Data.Instance.LoadData();
+        Debug.Log(Data.Instance.LoadData());
     }
 
     public void GetRanking()
     {
         BackendRank.Instance.RankGet(_1st, _2st, _3st, _1stScore, _2stSocre, _3stScore, _myRanking, _myRankingSocre);
-    }
-
-    public void RankingInsert(float score)
-    {
-        BackendRank.Instance.RankInsert(score);
     }
 }

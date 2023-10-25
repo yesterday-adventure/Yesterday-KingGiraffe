@@ -107,11 +107,6 @@ public class BackendGameData
         }
     }
 
-    public void SocreUp()
-    {
-        Debug.Log("score Up");
-    }
-
     // 게임정보 수정하기
     public void GameDataUpdate()
     {

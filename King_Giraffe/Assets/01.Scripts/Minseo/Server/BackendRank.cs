@@ -129,8 +129,8 @@ public class BackendRank
                     _3stS.text = info_s.ToString();
                 }
 
-                _MyR.text = BackendManager.Instance.userName;
-                Debug.Log(BackendManager.Instance.userName);
+                _MyR.text = Data.Instance.LoadData();
+                Debug.Log(Data.Instance.LoadData());
                 _MyRS.text = GameManager.instance.score.ToString() + " 초";
             }
         }
