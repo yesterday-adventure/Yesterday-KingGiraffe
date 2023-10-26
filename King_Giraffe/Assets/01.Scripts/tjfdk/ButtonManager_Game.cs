@@ -47,8 +47,12 @@ public class ButtonManager_Game : MonoBehaviour
         SoundManager.instance.PlaySFX("over");
 
         grade = GameManager.instance.score; // 현재 점수 받아오기
-        //_backendMenu.RankingInsert((float)GameManager.instance.score);
-        BackendRank.Instance.RankInsert((float)GameManager.instance.score);
+
+        // BackendRank.Instance.RankInsert((float)GameManager.instance.score);
+        float score = Data.Instance.BestSocre(GameManager.instance.score);
+
+        BackendRank.Instance.RankInsert((float)score);
+        Debug.Log(score);
         Debug.Log(GameManager.instance.score);
 
 
