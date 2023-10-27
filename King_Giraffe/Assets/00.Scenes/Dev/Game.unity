@@ -1231,6 +1231,7 @@ MonoBehaviour:
   maxSpeed: 0.5
   daleySpeed: 0.25
   delay: 3
+  hitColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
 --- !u!95 &391824369
 Animator:
   serializedVersion: 5

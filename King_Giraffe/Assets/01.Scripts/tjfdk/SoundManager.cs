@@ -63,6 +63,7 @@ public class SoundManager : MonoBehaviour
             if (name == bgmSounds[i].soundName)
             {
                 audioSourceBgmPlayers.clip = bgmSounds[i].clip;
+                audioSourceBgmPlayers.loop = true;
                 audioSourceBgmPlayers.Play();
                 return;
             }

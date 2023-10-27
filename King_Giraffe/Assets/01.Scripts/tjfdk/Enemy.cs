@@ -8,15 +8,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject gameObj, bg1, bg2;
     [SerializeField] private float maxSpeed, daleySpeed;
     [SerializeField] private float delay;
+    [SerializeField] private Color hitColor;
     float speed;
 
     Rigidbody2D rigid;
     Animator animator;
+    SpriteRenderer spriteRenderer;
 
     private void Awake() {
         
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         speed = maxSpeed; // 속도 초기화
     }
 
@@ -50,7 +53,9 @@ public class Enemy : MonoBehaviour
     IEnumerator Ispeed() { // 스턴
 
         speed = daleySpeed; // 속도를 낮추고
+        spriteRenderer.color = hitColor;
         yield return new WaitForSeconds(delay); // n초 지났다면
         speed = maxSpeed; // 속도 정상화
+        spriteRenderer.color = Color.white;
     }
 }
