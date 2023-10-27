@@ -50,8 +50,7 @@ public class ButtonManager_Game : MonoBehaviour
 
         // BackendRank.Instance.RankInsert((float)GameManager.instance.score);
         float score = Data.Instance.BestSocre(GameManager.instance.score);
-
-        BackendRank.Instance.RankInsert((float)score);
+        BackendRank.Instance.RankInsert(score);
         Debug.Log(score);
         Debug.Log(GameManager.instance.score);
 

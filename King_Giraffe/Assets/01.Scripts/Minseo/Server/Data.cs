@@ -11,7 +11,7 @@ public class Data : MonoBehaviour
 
     public string userName = "";
 
-    public List<float> bestScore = new List<float>();
+    public float bestScore = 0;
 
     private static Data _instance = null;
 
@@ -33,6 +33,8 @@ public class Data : MonoBehaviour
         userName = inputField.GetComponent<TMP_InputField>().text;
 
         inputField.onSubmit.AddListener((inputField) => { NickName(); });
+
+        // PlayerPrefs.SetFloat("BestScore", 0);
     }
 
     public void NickName()
@@ -50,20 +52,26 @@ public class Data : MonoBehaviour
 
     public float BestSocre(float score)
     {
-        bestScore.Add(score);
-
-
-        float maxScore = bestScore[0];
-        for (int i = 1; i < bestScore.Count; i++)
+        Debug.Log("베스트 스코어 들어옴");
+        bestScore =  PlayerPrefs.GetFloat("BestScore", 0);
+        Debug.Log("bests " + bestScore); // 1
+        float curretScore = score; 
+        
+        if(curretScore > bestScore)
         {
-            Debug.Log(bestScore[i]);
-            if (bestScore[i] > maxScore)
-            {
-                maxScore = bestScore[i];
-            }
+            bestScore = curretScore;
+
+            PlayerPrefs.SetFloat("BestScore", bestScore);
         }
 
-        return maxScore;
+        Debug.Log("best " + bestScore);
+        return bestScore;
+    }
+
+    public void ResetBestScore()
+    {
+        PlayerPrefs.DeleteKey("BestScore");
+        PlayerPrefs.Save();
     }
 
     public string LoadData()

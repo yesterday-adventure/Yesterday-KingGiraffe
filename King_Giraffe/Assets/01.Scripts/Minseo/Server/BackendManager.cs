@@ -24,6 +24,9 @@ public class BackendManager : MonoBehaviour
         }
 
         StartCoroutine(SignUpAndLoginCoroutine());
+
+
+        Data.Instance.ResetBestScore();
     }
 
 
