@@ -27,13 +27,6 @@ public class UIManager : MonoBehaviour
     [Header("CutScene")]
     [SerializeField] private List<Image> cutSceneList;
 
-    // private void Awake()
-    // {
-    //     if (instance == null)                
-    //         instance = this;               
-    //     else                                  
-    //         Destroy(this.gameObject);
-    // }
     private void Awake() {
         
         if (instance == null) instance = this;
