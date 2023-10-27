@@ -54,7 +54,6 @@ public class Data : MonoBehaviour
     {
         Debug.Log("베스트 스코어 들어옴");
         bestScore =  PlayerPrefs.GetFloat("BestScore", 0);
-        Debug.Log("bests " + bestScore); // 1
         float curretScore = score; 
         
         if(curretScore > bestScore)
@@ -71,6 +70,7 @@ public class Data : MonoBehaviour
     public void ResetBestScore()
     {
         PlayerPrefs.DeleteKey("BestScore");
+        PlayerPrefs.SetFloat("BestScore", bestScore);
         PlayerPrefs.Save();
     }
 
