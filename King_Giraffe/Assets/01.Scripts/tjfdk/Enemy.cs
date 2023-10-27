@@ -5,34 +5,52 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject gameObj, bg1, bg2;
+    public static Enemy Instance;
+
+    [SerializeField] private GameObject gameObj, player, bg1, bg2;
     [SerializeField] private float maxSpeed, daleySpeed;
     [SerializeField] private float delay;
     [SerializeField] private Color hitColor;
     float speed;
+    bool start = false;
+
+    public float startDistance, curDistance;
 
     Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer spriteRenderer;
 
     private void Awake() {
-        
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         speed = maxSpeed; // 속도 초기화
+
+        Invoke("Spawn", 15f);
+
+        startDistance = Vector3.Distance(player.transform.position, transform.position);
     }
+
+    private void Spawn() { start = true; }
 
     private void Update() {
         
-        rigid.velocity = Vector3.right * speed; // 사육사 이동
+        if (start)
+            rigid.velocity = Vector3.right * speed; // 사육사 이동
+
+        curDistance = Vector3.Distance(player.transform.position, transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
 
         if (!other.transform.CompareTag("Obs")) { // 플레이어와 충돌했다면
 
-            Debug.Log("플레이어와 충돌");
             Destroy(this.gameObject);
             Destroy(other.gameObject);
             Destroy(gameObj.gameObject);
@@ -43,7 +61,6 @@ public class Enemy : MonoBehaviour
         } 
         else if(other.transform.CompareTag("Obs")) { // 장애물과 충돌했다면
 
-            Debug.Log("장애물과 충돌");
             SoundManager.instance.PlaySFX("hit");
             StartCoroutine(Ispeed()); // 스턴
             Destroy(other.gameObject); // 장애물 삭제

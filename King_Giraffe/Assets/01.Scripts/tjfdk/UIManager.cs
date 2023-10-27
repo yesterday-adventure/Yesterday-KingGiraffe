@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     [Header("Point")]
     [SerializeField] private Slider dashGage;
 
+    [Header("Location")]
+    [SerializeField] private Slider locationGage;
+
     [Header("CutScene")]
     [SerializeField] private List<Image> cutSceneList;
 
@@ -49,6 +52,12 @@ public class UIManager : MonoBehaviour
             dashGage.maxValue = PointManager.Instance.pointMax;
             dashGage.value = 0;
         }
+
+        if (locationGage != null)
+        {
+            locationGage.maxValue = Enemy.Instance.startDistance;
+            locationGage.value = locationGage.maxValue;
+        }
     }
 
     private void Update() {
@@ -64,6 +73,9 @@ public class UIManager : MonoBehaviour
         
         if (dashGage != null)
             dashGage.value = PointManager.Instance.curPoint;
+
+        if (locationGage != null)
+            locationGage.value = Enemy.Instance.curDistance;
     }
 
     public void CutScene() {

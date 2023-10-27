@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e538bc35d7e60746b281540d62c95c1
+guid: c5f7c55e700b62843a6c20fdcf71beae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,43 +110,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Zookeeper_sheet_0
+      name: Zookeeper_sheetpng_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 58
-        width: 332
-        height: 397
+        x: 124
+        y: 47
+        width: 333
+        height: 419
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 619991ac8af82334f9cb1946ba30df0b
-      internalID: -708133882
+      spriteID: 365cfc99cb531b0478d3f3bc9cbcab57
+      internalID: -1654985647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Zookeeper_sheet_1
+      name: Zookeeper_sheetpng_1
       rect:
         serializedVersion: 2
-        x: 602
-        y: 58
-        width: 332
-        height: 397
+        x: 567
+        y: 47
+        width: 333
+        height: 419
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccccf34410ef34148877c05f5f29942d
-      internalID: -1345038968
+      spriteID: 0ff1f1ca26e60b549b6f3e07dedf31fb
+      internalID: 412639258
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Zookeeper_sheet_0: -708133882
-      Zookeeper_sheet_1: -1345038968
+      Zookeeper_sheetpng_0: -1654985647
+      Zookeeper_sheetpng_1: 412639258
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

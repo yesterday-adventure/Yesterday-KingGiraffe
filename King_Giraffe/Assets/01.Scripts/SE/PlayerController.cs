@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // 데쉬관련
     private Rigidbody2D playerBody;
     [SerializeField] private GameObject gas, gasPos;
-    [SerializeField] private Vector2 dash = new Vector2(10, 5);
+    [SerializeField] private Vector2 dash = new Vector2(10, 5f);
 
     private void Start()
     {

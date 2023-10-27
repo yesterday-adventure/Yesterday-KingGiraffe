@@ -13,6 +13,11 @@ public class PointManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SpawnPoint();
+    }
+
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject point;
 
@@ -28,8 +33,8 @@ public class PointManager : MonoBehaviour
     }
 
     public void SpawnPoint()
-    {
-        int ran = Random.Range((int)_player.transform.position.x + 20
+    {     
+        int ran = Random.Range((int)_player.transform.position.x + 5
                 , (int)_player.transform.position.x + 30);
         Vector3 dir = new Vector3(ran, -2);
         Instantiate(point, dir, Quaternion.identity);
